@@ -1,0 +1,15 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1594635117114,437,GetUserNameDetails,200,OK,Thread Group 1-1,text,true,,433,399,1,1,https://www.netmeds.com/mst/rest/v1/id/details/8310618462,436,0,369
+1594635117660,19,FetchRecordFromExcel_Sampler,200,OK,Thread Group 1-1,text,true,,0,0,1,1,null,0,0,0
+1594635117679,7554,PostUserNameAndPwd,200,OK,Thread Group 1-1,text,true,,725,484,1,1,https://www.netmeds.com/mst/rest/v1/session/create/using_userid_n_passwd,7554,0,0
+1594635125234,40,VerifycationSampler,200,OK,Thread Group 1-1,text,true,,0,0,1,1,null,0,0,0
+1594635125276,230,GetDateTime,200,OK,Thread Group 1-1,text,true,,516,466,1,1,https://www.netmeds.com/home/wellness/get_deals_date_time,229,0,0
+1594635125507,180,GetNetMedsTECHmsg,200,OK,Thread Group 1-1,text,true,,891,548,1,1,https://www.netmeds.com/payment/config/getcmsblock?name=netmeds_tech_msg,180,0,0
+1594635125689,105,GetCategoryConfigFormulaType,200,OK,Thread Group 1-1,text,true,,657,551,1,1,https://www.netmeds.com/payment/config/getcategconfig?name=cat-formula-type,105,0,0
+1594635125796,194,GetConsultURL,200,OK,Thread Group 1-1,text,true,,674,541,1,1,https://www.netmeds.com/payment/config/getconfig?name=consult-url,194,0,0
+1594635125992,147,GetPaymentConfigURL,200,OK,Thread Group 1-1,text,true,,687,538,1,1,https://www.netmeds.com/payment/config/getconfig?name=diag-url,147,0,0
+1594635126141,108,GetCoreConfig,200,OK,Thread Group 1-1,text,true,,677,544,1,1,https://www.netmeds.com/payment/config/getcoreconfig?name=ehr-enable,108,0,0
+1594635126250,42,Btn_LogOut,200,OK,Thread Group 1-1,text,true,,2857,492,1,1,https://www.netmeds.com/customer/account/logout?name=netmeds_login_banner,42,0,0
+1594635126294,179,NetMeds_RedirectHomePage,200,OK,Thread Group 1-1,text,true,,787,495,1,1,https://www.netmeds.com/payment/config/getcmsblock?name=netmeds_login_banner,179,0,0
+1594635126475,45,VerifycationSampler,200,OK,Thread Group 1-1,text,true,,0,0,1,1,null,0,0,0
+1594635117112,9280,Test_NetMeds,200,"Number of samples in transaction : 13, number of failing samples : 0",Thread Group 1-1,,true,,8904,5058,1,1,null,9174,129,369

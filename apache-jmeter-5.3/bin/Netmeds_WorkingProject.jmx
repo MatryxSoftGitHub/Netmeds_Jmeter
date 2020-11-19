@@ -1,0 +1,1849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Netmeds_workingproject" enabled="true">
+      <stringProp name="TestPlan.comments">This test plan was created by the BlazeMeter converter v.2.3.17. Please contact support@blazemeter.com for further support.</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>false</time>
+            <latency>false</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>false</label>
+            <code>false</code>
+            <message>false</message>
+            <threadName>false</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>false</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>true</samplerData>
+            <xml>true</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <url>true</url>
+            <hostname>true</hostname>
+            <sampleCount>true</sampleCount>
+          </value>
+        </objProp>
+        <stringProp name="filename">D:\Dileep\apache-jmeter-5.3\extras\Netmeds_WorkingProject123.jtl</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="FetchValuesFromCSV" enabled="true">
+        <stringProp name="filename">D:/Test.csv</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames"></stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="User-Agent" elementType="Header">
+            <stringProp name="Header.name">User-Agent</stringProp>
+            <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/x-www-form-urlencoded; charset=UTF-8</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept</stringProp>
+            <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept-Language</stringProp>
+            <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+          </elementProp>
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Accept-Encoding</stringProp>
+            <stringProp name="Header.value">gzip, deflate</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="BASE_URL_1" elementType="Argument">
+            <stringProp name="Argument.name">BASE_URL_1</stringProp>
+            <stringProp name="Argument.value">www.netmeds.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="channel" elementType="Argument">
+            <stringProp name="Argument.name">channel</stringProp>
+            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="name" elementType="Argument">
+            <stringProp name="Argument.name">name</stringProp>
+            <stringProp name="Argument.value">netmeds_login_banner</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Today" elementType="Argument">
+            <stringProp name="Argument.name">Today</stringProp>
+            <stringProp name="Argument.value">${__time(/1000,)} </stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.domain"></stringProp>
+        <stringProp name="HTTPSampler.port"></stringProp>
+        <stringProp name="HTTPSampler.protocol"></stringProp>
+        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+        <stringProp name="HTTPSampler.path"></stringProp>
+        <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <DNSCacheManager guiclass="DNSCachePanel" testclass="DNSCacheManager" testname="DNS Cache Manager" enabled="true">
+        <collectionProp name="DNSCacheManager.servers"/>
+        <boolProp name="DNSCacheManager.clearEachIteration">true</boolProp>
+        <boolProp name="DNSCacheManager.isCustomResolver">false</boolProp>
+      </DNSCacheManager>
+      <hashTree/>
+      <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
+        <collectionProp name="AuthManager.auth_list"/>
+        <boolProp name="AuthManager.controlledByThreadGroup">false</boolProp>
+      </AuthManager>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+        <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+        <boolProp name="clearEachIteration">true</boolProp>
+        <boolProp name="useExpires">false</boolProp>
+        <boolProp name="CacheManager.controlledByThread">false</boolProp>
+      </CacheManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="NetMedsThreadGroup" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">0</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="HTML Template Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.io.File 
+import java.nio.file.Files 
+import java.nio.file.Paths 
+import java.nio.file.StandardCopyOption 
+import java.text.SimpleDateFormat 
+import java.util.logging.Level 
+ 
+ 
+File file = new File(&quot;D:\\HTMLTemplate.html&quot;) 
+file.createNewFile() 
+file &lt;&lt; &quot;&lt;html&gt;&lt;body&gt;&lt;style&gt;table {  border-collapse: collapse;  width: 100%;}th, td {  text-align: left;  padding: 8px;  border: 1px solid #ddd;}tr:nth-child(even){background-color: #99C4EF}th {  background-color: #2570BA;  color: white;  border: 1px solid #ddd;}&lt;/style&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;BP Name&lt;/th&gt;&lt;th&gt;Test Script Name&lt;/th&gt;&lt;th&gt;Test Case Name&lt;/th&gt;&lt;th&gt;Module&lt;/th&gt;&lt;th&gt;Execution Result&lt;/th&gt;&lt;th&gt;DATA_REF_NBR&lt;/th&gt;&lt;th&gt;Execution Start Time Stamp&lt;/th&gt;&lt;th&gt;Error Message&lt;/th&gt;&lt;th&gt;Reason for Failure&lt;/th&gt;&lt;th&gt;Screenshot&lt;/th&gt;&lt;tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot; 
+
+</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="false">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+import groovy.json.JsonSlurper
+    
+     final String collatedReportFileName = &quot;output.csv&quot;
+     private String individualReportName = new SimpleDateFormat(&quot;yyyy-MM-dd hh.mm.ss aaa&quot;).format(new Date())
+     private String lastCaseID = &quot; &quot;
+     private String testSuiteName = &quot;Test Suite Name&quot;
+     private String testSuiteExecutionTimeStamp = &quot;&quot;
+     private String resultRow = &quot;&quot;
+     private String resultRowHtml =&quot;&quot;
+     private String htmlFileName=&quot;&quot;
+     private String FolderName=&quot;&quot;
+     String SimplErrMsg=&quot;&quot;
+     ResponseObject getUsersResponse = new ResponseObject()
+     def jsonSlurper = new JsonSlurper()
+log.info(&quot;Individual Report Name &quot;+ individualReportName +&quot; Formate&quot;); 
+
+
+//private def appendResultToReportFile(String fileName) {
+//          //check if report file exists, otherwise create file with title inside.
+//          File reportFile = new File(RunConfiguration.getProjectDir(), fileName)
+//          if (!reportFile.exists()) {
+//               reportFile.createNewFile()
+//               reportFile &lt;&lt; &quot;DATA_REF_NBR, BP Name, Test Script Name, Test Case Name, Module, Execution Result, Execution Start Time Stamp, Error Message,Reason for Failure\n&quot;
+//          }
+//          reportFile &lt;&lt; resultRow
+//     }
+//       private def appendResultToReportFileRealTIme(String fileName, String data) {
+//          File reportFile = new File(&quot;C:\Jmeter\CReports&quot;, fileName)
+//          if (!reportFile.exists()) {
+//               reportFile.createNewFile()
+//
+//               reportFile &lt;&lt; &quot;&lt;html&gt;&lt;body&gt;&lt;style&gt;table {  border-collapse: collapse;  width: 100%;}th, td {  text-align: left;  padding: 8px;  border: 1px solid #ddd;}tr:nth-child(even){background-color: #99C4EF}th {  background-color: #2570BA;  color: white;  border: 1px solid #ddd;}&lt;/style&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;BP Name&lt;/th&gt;&lt;th&gt;Test Script Name&lt;/th&gt;&lt;th&gt;Test Case Name&lt;/th&gt;&lt;th&gt;Module&lt;/th&gt;&lt;th&gt;Execution Result&lt;/th&gt;&lt;th&gt;DATA_REF_NBR&lt;/th&gt;&lt;th&gt;Execution Start Time Stamp&lt;/th&gt;&lt;th&gt;Error Message&lt;/th&gt;&lt;th&gt;Reason for Failure&lt;/th&gt;&lt;th&gt;Screenshot&lt;/th&gt;&lt;tr&gt;&quot;
+//
+//
+//          }
+//          reportFile &lt;&lt; data
+//
+//     }
+//
+//     private def appendResultTohtmlFile(String fileName) {
+//          //check if report file exists, otherwise create file with title inside.
+//          File reportFile = new File(RunConfiguration.getProjectDir()+&quot;/Reports&quot;, fileName)
+//          reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+//
+//     }
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Test_NetMeds" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetUserNameDetails" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">mst/rest/v1/id/details/${sUserName}</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">To Fetch the User Name from CSV file</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="FetchRecordFromExcel_Sampler" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">import org.apache.poi.ss.usermodel.*
+import org.apache.poi.hssf.usermodel.*
+import org.apache.poi.xssf.usermodel.*
+import org.apache.poi.ss.util.*
+import org.codehaus.groovy.scriptom.ActiveXObject
+import java.io.*;
+import jxl.*
+import jxl.write.*
+
+def startTime = System.currentTimeMillis(); //return current time in milliseconds
+SampleResult.setStartTime(startTime); // set StartTime
+log.info(&quot;Start Time should be: &quot; + (new Date(startTime)).toString());
+
+//To Get the &apos;Channel&apos;
+vars.get(&quot;channel&quot;);
+
+//Assighn value to &quot;Channel&quot;
+vars.put(&quot;channel&quot;,&quot;web123&quot;);
+ 
+//Excel Path
+def fs = new FileInputStream (&quot;D:\\Test.xlsx&quot;);
+
+Workbook wb = WorkbookFactory.create(fs);
+def ws = wb.getSheet(&quot;DataDriven&quot;) 	
+def count = ws.getPhysicalNumberOfRows()
+
+//To Get Number of Rows in The given excel sheet 
+log.info(&quot;Number of Rows: &quot; +count)
+
+//To Get Number of Sheets in the given Excel
+ int sheetNum = wb.getNumberOfSheets();
+ log.info(&quot;Number of Sheets: &quot; +sheetNum)
+
+//To Fetch the Row
+Sheet sheet = wb.getSheetAt(0);
+   Row row = sheet.getRow(1);
+
+//Fetching Usanme
+   Cell UserNameCell = row.getCell(0);
+   String sUserName=UserNameCell
+   
+//Fetching Password
+   Cell PasswordCell = row.getCell(1);
+   String sPassowrd=PasswordCell
+   
+ log.info(&quot;UserName From Excel &quot; +sUserName )
+ log.info(&quot;Password From Excel &quot; +sPassowrd )
+
+//Strong UserName and Password Values 
+ vars.put(&quot;FrmExcel_name&quot;, sUserName);
+ vars.put(&quot;FrmExcel_sPwd&quot;, sPassowrd);
+
+
+log.info(&quot;Previous Response URL is: &quot; + ctx.getPreviousResult().getURL()); //To Get the Previous Respose URL
+log.info(&quot;Previous Response Time is: &quot; + ctx.getPreviousResult().getTime());// Previous Response Time
+
+</stringProp>
+            <stringProp name="TestPlan.comments">Fetching Parameter Names and Passing values from Groovy Script</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostUserNameAndPwd" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="passwd" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">passwd</stringProp>
+                  <stringProp name="Argument.value">${FrmExcel_sPwd}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="channel" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">channel</stringProp>
+                  <stringProp name="Argument.value">${channel}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="merge_session" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">merge_session</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="userid" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">userid</stringProp>
+                  <stringProp name="Argument.value">${sUserName}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">mst/rest/v1/session/create/using_userid_n_passwd</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">Passing UserName and Password Dynamically from CSV and Excel_Sampler</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="VerifycationSampler" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">log.info(&quot;Current Sampler class is: &quot; + ctx.getCurrentSampler());
+
+String sChannelFromParameter = vars.get(&quot;channel&quot;);//In Use
+String sURLFromParameter = vars.get(&quot;BASE_URL_1&quot;);
+
+log.info(&quot;Channel Type is &quot;+ sChannelFromParameter); 
+String sVerifychannel=&quot;${channel}&quot;
+if(sVerifychannel == sChannelFromParameter )   
+ log.info(&quot;Channel is Web Request Type&quot;);   
+else  
+ log.error(&quot;Channel is Not Web Request Type&quot;);
+
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetDateTime" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">home/wellness/get_deals_date_time</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                </elementProp>
+                <elementProp name="X-Requested-With" elementType="Header">
+                  <stringProp name="Header.name">X-Requested-With</stringProp>
+                  <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetNetMedsTECHmsg" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">netmeds_tech_msg</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcmsblock</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetCategoryConfigFormulaType" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">cat-formula-type</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcategconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetConsultURL" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">consult-url</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetPaymentConfigURL" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">diag-url</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetCoreConfig" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">ehr-enable</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcoreconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Btn_LogOut" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">netmeds_login_banner</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">customer/account/logout</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NetMeds_RedirectHomePage" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">netmeds_login_banner</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcmsblock</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="VerifycationSampler" enabled="false">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">log.info(&quot;Current Sampler class is: &quot; + ctx.getCurrentSampler());
+
+String sChannelFromParameter = vars.get(&quot;name&quot;);
+
+log.info(&quot;The Page is Redirected to  &quot;+ sChannelFromParameter +&quot; Home Page&quot;); 
+String sHomePage=&quot;${name}&quot;
+if(sChannelFromParameter == sHomePage )   
+ log.info(&quot;LogOut Sucessfully and Page is navigated to Home Page&quot;);   
+else  
+ log.error(&quot;Failed to Logout and Page is not redirected to Home Page&quot;);
+
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="false">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+import groovy.json.JsonSlurper
+
+
+
+	 String collatedReportFileName = &quot;Collated Report V1.0.csv&quot;
+	 String individualReportName = new SimpleDateFormat(&quot;yyyy-MM-dd hh.mm.ss aaa&quot;).format(new Date())
+	 String lastCaseID = &quot; &quot;
+	 String testSuiteName = &quot;Test Suite Name&quot;
+	 String testSuiteExecutionTimeStamp = &quot;&quot;
+	 String resultRow = &quot;&quot;
+	 String resultRowHtml =&quot;&quot;
+	 String htmlFileName=&quot;&quot;
+	 String FolderName=&quot;&quot;
+	String SimplErrMsg=&quot;&quot;
+	//ResponseObject getUsersResponse = new ResponseObject()
+	def jsonSlurper = new JsonSlurper()
+
+	def jsonObject  =	&quot;&quot;
+	def IssueKey=&quot;&quot;
+	 //log.info(&quot;Reoprted File Name: &quot; +collatedReportFileName)
+	 def appendResultToReportFile(String fileName) {
+		//check if report file exists, otherwise create file with title inside.
+		File reportFile = new File(&quot;C:\Jmeter\HtmlReport&quot;, fileName)
+		
+		if (!reportFile.exists()) {
+			reportFile.createNewFile()
+			reportFile &lt;&lt; &quot;DATA_REF_NBR, BP Name, Test Script Name, Test Case Name, Module, Execution Result, Execution Start Time Stamp, Error Message,Reason for Failure\n&quot;
+		}
+		log.info(&quot;Reoprted File Name: &quot; +collatedReportFileName)
+		reportFile &lt;&lt; resultRow
+	}</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+        </hashTree>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1447182358">200|400</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.custom_message"></stringProp>
+          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">1</intProp>
+          <stringProp name="TestPlan.comments">To Handle bad requests and The request has succeeded</stringProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import org.apache.jmeter.services.FileServer;
+f = new FileOutputStream(&quot;D:\\Report\\result123.html&quot;, true);
+pt = new PrintStream(f);
+pt.println(&quot;&lt;html&gt;&lt;body&gt;&quot;);
+for (a: SampleResult.getAssertionResults()) {
+  if (a.isError() || a.isFailure()) {
+    log.error(&quot;URL :&quot;+ ctx.getCurrentSampler().toString());
+    log.error(Thread.currentThread().getName()+&quot;: &quot;+SampleLabel+&quot;: Assertion failed for response: &quot; + new String((byte[]) ResponseData));
+    pt.println(&quot;URL :&quot;+ ctx.getCurrentSampler().toString());
+    pt.println(Thread.currentThread().getName()+&quot;: &quot;+SampleLabel+&quot;: Assertion failed for response: &quot; + new String((byte[]) ResponseData)); // update here what you want to write
+  }
+  pt.println(&quot;&lt;/body&gt;&lt;/html&gt;&quot;);
+  pt.close();
+  f.close();
+}
+
+//import org.apache.jmeter.assertions.AssertionResult;
+//
+//AssertionResult[] results = sampleResult.getAssertionResults();
+//
+//boolean skipPostAssertionConsumerService = false;
+//
+//for(int i =0; i&lt;results.length; i++) { 
+//
+//    AssertionResult result = results[i];
+//
+//    boolean isResponseAssertion = result.getName().equals(&quot;Response Assertion - Is Not Authentication Failed&quot;);
+//    boolean resultHasFailed = result.isFailure() || result.isError();
+//
+//     if(isResponseAssertion &amp;&amp; resultHasFailed) { 
+//        skipPostAssertionConsumerService = true;
+//        break;
+//     } 
+//}
+//
+//vars.put(&quot;do_post_assertion_consumer_service_url&quot;, (!skipPostAssertionConsumerService).toString());
+</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+      </hashTree>
+      <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="false">
+        <stringProp name="scriptLanguage">groovy</stringProp>
+        <stringProp name="parameters"></stringProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="cacheKey">true</stringProp>
+        <stringProp name="script">import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.reporter.*;
+import com.aventstack.extentreports.markuputils.*;
+
+ExtentHtmlReporter htmlReporter;
+ExtentReports extent;
+ExtentTest test;
+
+create the HtmlReporter
+//htmlReporter = new ExtentHtmlReporter(&quot;D://Result//Results_${testApp}_${reportDate}_${currentTime}_${testenv}.html&quot;);
+htmlReporter = new ExtentHtmlReporter(&quot;D:/Result.html&quot;);
+//configure report
+htmlReporter.config().setCreateOfflineReport(true);
+htmlReporter.config().setDocumentTitle(&quot;${testApp} Results&quot;);
+htmlReporter.config().setChartVisibilityOnOpen(true);
+htmlReporter.config().setEncoding(&quot;utf-8&quot;);
+htmlReporter.config().setReportName(&quot;${testApp} Results ${reportDate}_${currentTime}_${testenv}&quot;);
+htmlReporter.setAppendExisting(true);
+
+// create ExtentReports
+extent = new ExtentReports();
+
+// attach reporter to ExtentReports
+extent.attachReporter(htmlReporter);
+extent.setReportUsesManualConfiguration(true); 
+
+// Show Env section and set data on dashboard
+extent.setSystemInfo(&quot;Tool&quot;,&quot;JMeter&quot;);
+extent.setSystemInfo(&quot;Test Env&quot;,&quot;${testenv}&quot;);
+extent.setSystemInfo(&quot;Test Date&quot;,&quot;${reportDate}&quot;);
+extent.setSystemInfo(&quot;Test Time&quot;,&quot;${currentTime}&quot;);
+
+//stringify test info
+String threadName = sampler.getThreadName();
+String samplerName = sampler.getName();
+String requestData = props.get(&quot;propRequestData&quot;);
+String respCode = props.get(&quot;propRespCode&quot;);
+String respMessage = props.get(&quot;propRespMessage&quot;);
+String responseData = props.get(&quot;propResponse&quot;);
+
+
+// create test
+test = extent.createTest(threadName+&quot; - &quot;+samplerName);
+//test.assignCategory(&quot;API Testing&quot;);
+
+// analyze sampler result
+if (vars.get(&quot;JMeterThread.last_sample_ok&quot;) == &quot;false&quot;) {
+   log.error(&quot;FAILED: &quot;+samplerName);
+   print(&quot;FAILED: &quot;+samplerName);
+   test.fail(MarkupHelper.createLabel(&quot;FAILED:  &quot;+sampler.getName(),ExtentColor.RED));
+
+} else if (vars.get(&quot;JMeterThread.last_sample_ok&quot;) == &quot;true&quot;) {
+    if(responseData.contains(&quot;@error&quot;)) {
+        log.info(&quot;FAILED: &quot;+sampler.getName());
+         print(&quot;FAILED: &quot;+sampler.getName());
+        test.fail(MarkupHelper.createLabel(&quot;FAILED:   &quot;+sampler.getName(),ExtentColor.RED));
+
+    } else if (responseData.contains(&quot;{&quot;)) {
+            log.info(&quot;Passed: &quot;+sampler.getName());
+        print(&quot;Passed: &quot;+sampler.getName());
+            test.pass(MarkupHelper.createLabel(&quot;Passed:   &quot;+sampler.getName(),ExtentColor.GREEN));
+    }
+
+} else {
+    log.error(&quot;Something is really wonky&quot;);
+    print(&quot;Something is really wonky&quot;);
+    test.fatal(&quot;Something is really wonky&quot;);
+}
+
+//info messages
+    test.info(&quot;RequestData:   &quot;+requestData);
+    test.info(&quot;Response Code and Message:    &quot;+respCode+&quot;   &quot;+respMessage);
+    test.info(&quot;ResponseData:    &quot;+responseData);
+
+
+
+//playing around
+//markupify json into code blocks
+//Markup m = MarkupHelper.createCodeBlock(requestData);
+//test.info(MarkupHelper.createModal(&quot;Modal text&quot;));
+//Markup mCard = MarkupHelper.createCard(requestData, ExtentColor.CYAN);
+//   test.info(&quot;Request  &quot;+m);
+//  test.info(mCard);
+//     test.info(&quot;Response Data:     &quot;+MarkupHelper.createCodeBlock(props.get(&quot;propResponse&quot;)));
+//   test.info(&quot;ASSERTION MESSAGE:     &quot;+props.get(&quot;propAssertion&quot;));
+
+
+// end the reporting and save the file
+extent.flush();</stringProp>
+      </JSR223Listener>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="NetMedsThreadGroup" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">0</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="HTML Template Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.io.File 
+import java.nio.file.Files 
+import java.nio.file.Paths 
+import java.nio.file.StandardCopyOption 
+import java.text.SimpleDateFormat 
+import java.util.logging.Level 
+ 
+ 
+File file = new File(&quot;D:\\HTMLTemplate.html&quot;) 
+file.createNewFile() 
+file &lt;&lt; &quot;&lt;html&gt;&lt;body&gt;&lt;style&gt;table {  border-collapse: collapse;  width: 100%;}th, td {  text-align: left;  padding: 8px;  border: 1px solid #ddd;}tr:nth-child(even){background-color: #99C4EF}th {  background-color: #2570BA;  color: white;  border: 1px solid #ddd;}&lt;/style&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;BP Name&lt;/th&gt;&lt;th&gt;Test Script Name&lt;/th&gt;&lt;th&gt;Test Case Name&lt;/th&gt;&lt;th&gt;Module&lt;/th&gt;&lt;th&gt;Execution Result&lt;/th&gt;&lt;th&gt;DATA_REF_NBR&lt;/th&gt;&lt;th&gt;Execution Start Time Stamp&lt;/th&gt;&lt;th&gt;Error Message&lt;/th&gt;&lt;th&gt;Reason for Failure&lt;/th&gt;&lt;th&gt;Screenshot&lt;/th&gt;&lt;tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot; 
+
+</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="false">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+import groovy.json.JsonSlurper
+    
+     final String collatedReportFileName = &quot;output.csv&quot;
+     private String individualReportName = new SimpleDateFormat(&quot;yyyy-MM-dd hh.mm.ss aaa&quot;).format(new Date())
+     private String lastCaseID = &quot; &quot;
+     private String testSuiteName = &quot;Test Suite Name&quot;
+     private String testSuiteExecutionTimeStamp = &quot;&quot;
+     private String resultRow = &quot;&quot;
+     private String resultRowHtml =&quot;&quot;
+     private String htmlFileName=&quot;&quot;
+     private String FolderName=&quot;&quot;
+     String SimplErrMsg=&quot;&quot;
+     ResponseObject getUsersResponse = new ResponseObject()
+     def jsonSlurper = new JsonSlurper()
+log.info(&quot;Individual Report Name &quot;+ individualReportName +&quot; Formate&quot;); 
+
+
+//private def appendResultToReportFile(String fileName) {
+//          //check if report file exists, otherwise create file with title inside.
+//          File reportFile = new File(RunConfiguration.getProjectDir(), fileName)
+//          if (!reportFile.exists()) {
+//               reportFile.createNewFile()
+//               reportFile &lt;&lt; &quot;DATA_REF_NBR, BP Name, Test Script Name, Test Case Name, Module, Execution Result, Execution Start Time Stamp, Error Message,Reason for Failure\n&quot;
+//          }
+//          reportFile &lt;&lt; resultRow
+//     }
+//       private def appendResultToReportFileRealTIme(String fileName, String data) {
+//          File reportFile = new File(&quot;C:\Jmeter\CReports&quot;, fileName)
+//          if (!reportFile.exists()) {
+//               reportFile.createNewFile()
+//
+//               reportFile &lt;&lt; &quot;&lt;html&gt;&lt;body&gt;&lt;style&gt;table {  border-collapse: collapse;  width: 100%;}th, td {  text-align: left;  padding: 8px;  border: 1px solid #ddd;}tr:nth-child(even){background-color: #99C4EF}th {  background-color: #2570BA;  color: white;  border: 1px solid #ddd;}&lt;/style&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;BP Name&lt;/th&gt;&lt;th&gt;Test Script Name&lt;/th&gt;&lt;th&gt;Test Case Name&lt;/th&gt;&lt;th&gt;Module&lt;/th&gt;&lt;th&gt;Execution Result&lt;/th&gt;&lt;th&gt;DATA_REF_NBR&lt;/th&gt;&lt;th&gt;Execution Start Time Stamp&lt;/th&gt;&lt;th&gt;Error Message&lt;/th&gt;&lt;th&gt;Reason for Failure&lt;/th&gt;&lt;th&gt;Screenshot&lt;/th&gt;&lt;tr&gt;&quot;
+//
+//
+//          }
+//          reportFile &lt;&lt; data
+//
+//     }
+//
+//     private def appendResultTohtmlFile(String fileName) {
+//          //check if report file exists, otherwise create file with title inside.
+//          File reportFile = new File(RunConfiguration.getProjectDir()+&quot;/Reports&quot;, fileName)
+//          reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+//
+//     }
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Test_NetMeds" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetUserNameDetails" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">mst/rest/v1/id/details/${sUserName}</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">To Fetch the User Name from CSV file</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="FetchRecordFromExcel_Sampler" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">import org.apache.poi.ss.usermodel.*
+import org.apache.poi.hssf.usermodel.*
+import org.apache.poi.xssf.usermodel.*
+import org.apache.poi.ss.util.*
+import org.codehaus.groovy.scriptom.ActiveXObject
+import java.io.*;
+import jxl.*
+import jxl.write.*
+
+def startTime = System.currentTimeMillis(); //return current time in milliseconds
+SampleResult.setStartTime(startTime); // set StartTime
+log.info(&quot;Start Time should be: &quot; + (new Date(startTime)).toString());
+
+//To Get the &apos;Channel&apos;
+vars.get(&quot;channel&quot;);
+
+//Assighn value to &quot;Channel&quot;
+vars.put(&quot;channel&quot;,&quot;web&quot;);
+ 
+//Excel Path
+def fs = new FileInputStream (&quot;D:\\Test.xlsx&quot;);
+
+Workbook wb = WorkbookFactory.create(fs);
+def ws = wb.getSheet(&quot;DataDriven&quot;) 	
+def count = ws.getPhysicalNumberOfRows()
+
+//To Get Number of Rows in The given excel sheet 
+log.info(&quot;Number of Rows: &quot; +count)
+
+//To Get Number of Sheets in the given Excel
+ int sheetNum = wb.getNumberOfSheets();
+ log.info(&quot;Number of Sheets: &quot; +sheetNum)
+
+//To Fetch the Row
+Sheet sheet = wb.getSheetAt(0);
+   Row row = sheet.getRow(1);
+
+//Fetching Usanme
+   Cell UserNameCell = row.getCell(0);
+   String sUserName=UserNameCell
+   
+//Fetching Password
+   Cell PasswordCell = row.getCell(1);
+   String sPassowrd=PasswordCell
+   
+ log.info(&quot;UserName From Excel &quot; +sUserName )
+ log.info(&quot;Password From Excel &quot; +sPassowrd )
+
+//Strong UserName and Password Values 
+ vars.put(&quot;FrmExcel_name&quot;, sUserName);
+ vars.put(&quot;FrmExcel_sPwd&quot;, sPassowrd);
+
+
+log.info(&quot;Previous Response URL is: &quot; + ctx.getPreviousResult().getURL()); //To Get the Previous Respose URL
+log.info(&quot;Previous Response Time is: &quot; + ctx.getPreviousResult().getTime());// Previous Response Time
+
+</stringProp>
+            <stringProp name="TestPlan.comments">Fetching Parameter Names and Passing values from Groovy Script</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostUserNameAndPwd" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="passwd" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">passwd</stringProp>
+                  <stringProp name="Argument.value">${FrmExcel_sPwd}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="channel" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">channel</stringProp>
+                  <stringProp name="Argument.value">${channel}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="merge_session" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">merge_session</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="userid" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">userid</stringProp>
+                  <stringProp name="Argument.value">${sUserName}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">mst/rest/v1/session/create/using_userid_n_passwd</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">Passing UserName and Password Dynamically from CSV and Excel_Sampler</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="VerifycationSampler" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">log.info(&quot;Current Sampler class is: &quot; + ctx.getCurrentSampler());
+
+String sChannelFromParameter = vars.get(&quot;channel&quot;);//In Use
+String sURLFromParameter = vars.get(&quot;BASE_URL_1&quot;);
+
+log.info(&quot;Channel Type is &quot;+ sChannelFromParameter); 
+String sVerifychannel=&quot;${channel}&quot;
+if(sVerifychannel == sChannelFromParameter )   
+ log.info(&quot;Channel is Web Request Type&quot;);   
+else  
+ log.error(&quot;Channel is Not Web Request Type&quot;);
+
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetDateTime" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">home/wellness/get_deals_date_time</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                </elementProp>
+                <elementProp name="X-Requested-With" elementType="Header">
+                  <stringProp name="Header.name">X-Requested-With</stringProp>
+                  <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetNetMedsTECHmsg" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">netmeds_tech_msg</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcmsblock</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetCategoryConfigFormulaType" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">cat-formula-type</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcategconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetConsultURL" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">consult-url</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetPaymentConfigURL" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">diag-url</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetCoreConfig" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">ehr-enable</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcoreconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Btn_LogOut" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">netmeds_login_banner</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">customer/account/logout</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NetMeds_RedirectHomePage" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">netmeds_login_banner</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcmsblock</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="VerifycationSampler" enabled="false">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">log.info(&quot;Current Sampler class is: &quot; + ctx.getCurrentSampler());
+
+String sChannelFromParameter = vars.get(&quot;name&quot;);
+
+log.info(&quot;The Page is Redirected to  &quot;+ sChannelFromParameter +&quot; Home Page&quot;); 
+String sHomePage=&quot;${name}&quot;
+if(sChannelFromParameter == sHomePage )   
+ log.info(&quot;LogOut Sucessfully and Page is navigated to Home Page&quot;);   
+else  
+ log.error(&quot;Failed to Logout and Page is not redirected to Home Page&quot;);
+
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="false">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+import groovy.json.JsonSlurper
+
+
+
+	 String collatedReportFileName = &quot;Collated Report V1.0.csv&quot;
+	 String individualReportName = new SimpleDateFormat(&quot;yyyy-MM-dd hh.mm.ss aaa&quot;).format(new Date())
+	 String lastCaseID = &quot; &quot;
+	 String testSuiteName = &quot;Test Suite Name&quot;
+	 String testSuiteExecutionTimeStamp = &quot;&quot;
+	 String resultRow = &quot;&quot;
+	 String resultRowHtml =&quot;&quot;
+	 String htmlFileName=&quot;&quot;
+	 String FolderName=&quot;&quot;
+	String SimplErrMsg=&quot;&quot;
+	//ResponseObject getUsersResponse = new ResponseObject()
+	def jsonSlurper = new JsonSlurper()
+
+	def jsonObject  =	&quot;&quot;
+	def IssueKey=&quot;&quot;
+	 //log.info(&quot;Reoprted File Name: &quot; +collatedReportFileName)
+	 def appendResultToReportFile(String fileName) {
+		//check if report file exists, otherwise create file with title inside.
+		File reportFile = new File(&quot;C:\Jmeter\HtmlReport&quot;, fileName)
+		
+		if (!reportFile.exists()) {
+			reportFile.createNewFile()
+			reportFile &lt;&lt; &quot;DATA_REF_NBR, BP Name, Test Script Name, Test Case Name, Module, Execution Result, Execution Start Time Stamp, Error Message,Reason for Failure\n&quot;
+		}
+		log.info(&quot;Reoprted File Name: &quot; +collatedReportFileName)
+		reportFile &lt;&lt; resultRow
+	}</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+        </hashTree>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="-1447182358">200|400</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.custom_message"></stringProp>
+          <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          <boolProp name="Assertion.assume_success">true</boolProp>
+          <intProp name="Assertion.test_type">1</intProp>
+          <stringProp name="TestPlan.comments">To Handle bad requests and The request has succeeded</stringProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import org.apache.jmeter.services.FileServer;
+f = new FileOutputStream(&quot;D:\\Report\\result123.html&quot;, true);
+pt = new PrintStream(f);
+pt.println(&quot;&lt;html&gt;&lt;body&gt;&quot;);
+for (a: SampleResult.getAssertionResults()) {
+  if (a.isError() || a.isFailure()) {
+    log.error(&quot;URL :&quot;+ ctx.getCurrentSampler().toString());
+    log.error(Thread.currentThread().getName()+&quot;: &quot;+SampleLabel+&quot;: Assertion failed for response: &quot; + new String((byte[]) ResponseData));
+    pt.println(&quot;URL :&quot;+ ctx.getCurrentSampler().toString());
+    pt.println(Thread.currentThread().getName()+&quot;: &quot;+SampleLabel+&quot;: Assertion failed for response: &quot; + new String((byte[]) ResponseData)); // update here what you want to write
+  }
+  pt.println(&quot;&lt;/body&gt;&lt;/html&gt;&quot;);
+  pt.close();
+  f.close();
+}
+
+//import org.apache.jmeter.assertions.AssertionResult;
+//
+//AssertionResult[] results = sampleResult.getAssertionResults();
+//
+//boolean skipPostAssertionConsumerService = false;
+//
+//for(int i =0; i&lt;results.length; i++) { 
+//
+//    AssertionResult result = results[i];
+//
+//    boolean isResponseAssertion = result.getName().equals(&quot;Response Assertion - Is Not Authentication Failed&quot;);
+//    boolean resultHasFailed = result.isFailure() || result.isError();
+//
+//     if(isResponseAssertion &amp;&amp; resultHasFailed) { 
+//        skipPostAssertionConsumerService = true;
+//        break;
+//     } 
+//}
+//
+//vars.put(&quot;do_post_assertion_consumer_service_url&quot;, (!skipPostAssertionConsumerService).toString());
+</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>true</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>true</responseData>
+            <samplerData>true</samplerData>
+            <xml>true</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>true</responseHeaders>
+            <requestHeaders>true</requestHeaders>
+            <responseDataOnError>true</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>2</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <fileName>true</fileName>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename">D:\Dileep\apache-jmeter-5.3\extras\Full.xml</stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

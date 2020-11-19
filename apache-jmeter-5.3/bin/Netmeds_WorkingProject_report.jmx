@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<httpSample t="319" it="0" lt="319" ct="259" ts="1594634812586" s="true" lb="GetUserNameDetails" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="" by="433" sby="399" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 58
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Content-Type, authtoken, userid
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:37 GMT
+Connection: keep-alive
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;status&quot;:&quot;success&quot;,&quot;response_time&quot;:&quot;2020-07-13 15:38:37&quot;}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/mst/rest/v1/id/details/8310618462</java.net.URL>
+</httpSample>
+<sample t="70" it="0" lt="0" ct="0" ts="1594634812991" s="true" lb="FetchRecordFromExcel_Sampler" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="" by="0" sby="0" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String"></responseHeader>
+  <requestHeader class="java.lang.String"></requestHeader>
+  <responseData class="java.lang.String"></responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <samplerData class="java.lang.String">import org.apache.poi.ss.usermodel.*
+import org.apache.poi.hssf.usermodel.*
+import org.apache.poi.xssf.usermodel.*
+import org.apache.poi.ss.util.*
+import org.codehaus.groovy.scriptom.ActiveXObject
+import java.io.*;
+import jxl.*
+import jxl.write.*
+
+def startTime = System.currentTimeMillis(); //return current time in milliseconds
+SampleResult.setStartTime(startTime); // set StartTime
+log.info(&quot;Start Time should be: &quot; + (new Date(startTime)).toString());
+
+//To Get the &apos;Channel&apos;
+vars.get(&quot;channel&quot;);
+//Assighn value to &quot;Channel&quot;
+vars.put(&quot;channel&quot;,&quot;web&quot;);
+
+
+//Excel Path
+def fs = new FileInputStream (&quot;D:\\Test.xlsx&quot;);
+
+Workbook wb = WorkbookFactory.create(fs);
+def ws = wb.getSheet(&quot;DataDriven&quot;) 	
+def count = ws.getPhysicalNumberOfRows()
+
+//To Get Number of Rows in The given excel sheet 
+log.info(&quot;Number of Rows: &quot; +count)
+
+//To Get Number of Sheets in the given Excel
+ int sheetNum = wb.getNumberOfSheets();
+ log.info(&quot;Number of Sheets: &quot; +sheetNum)
+
+//To Fetch the Row
+Sheet sheet = wb.getSheetAt(0);
+   Row row = sheet.getRow(1);
+
+//Fetching Usanme
+   Cell UserNameCell = row.getCell(0);
+   String sUserName=UserNameCell
+   
+//Fetching Password
+   Cell PasswordCell = row.getCell(1);
+   String sPassowrd=PasswordCell
+   
+ log.info(&quot;UserName From Excel &quot; +sUserName )
+ log.info(&quot;Password From Excel &quot; +sPassowrd )
+
+//Strong UserName and Password Values 
+ vars.put(&quot;FrmExcel_name&quot;, sUserName);
+ vars.put(&quot;FrmExcel_sPwd&quot;, sPassowrd);
+
+
+log.info(&quot;Previous Response URL is: &quot; + ctx.getPreviousResult().getURL()); //To Get the Previous Respose URL
+log.info(&quot;Previous Response Time is: &quot; + ctx.getPreviousResult().getTime());// Previous Response Time
+
+</samplerData>
+</sample>
+<httpSample t="2673" it="0" lt="2673" ct="0" ts="1594634813062" s="true" lb="PostUserNameAndPwd" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="" by="725" sby="484" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 349
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Content-Type, authtoken, userid
+Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:40 GMT
+Connection: keep-alive
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Content-Length: 64
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:{&quot;session&quot;:{&quot;created_time&quot;:null,&quot;cart_id&quot;:null,&quot;valid_till&quot;:&quot;2021-01-12 15:38:37&quot;,&quot;is_valid&quot;:true,&quot;channel&quot;:&quot;web&quot;,&quot;id&quot;:&quot;b49bc42c0b0389d4ee0da7365efee158bb0eef911226774774&quot;,&quot;customer_id&quot;:3174426,&quot;logan_session_id&quot;:&quot;42f09ea6a4814267931ebb6e0ae553fb33e011f03980110ff41c2ea4cb6d039a&quot;}},&quot;response_time&quot;:&quot;2020-07-13 15:38:40&quot;}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String">passwd=Matryx%40123&amp;channel=web&amp;merge_session=&amp;userid=8310618462</queryString>
+  <java.net.URL>https://www.netmeds.com/mst/rest/v1/session/create/using_userid_n_passwd</java.net.URL>
+</httpSample>
+<sample t="47" it="0" lt="0" ct="0" ts="1594634815736" s="true" lb="VerifycationSampler" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="" by="0" sby="0" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String"></responseHeader>
+  <requestHeader class="java.lang.String"></requestHeader>
+  <responseData class="java.lang.String"></responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <samplerData class="java.lang.String">log.info(&quot;Current Sampler class is: &quot; + ctx.getCurrentSampler());
+
+String sChannelFromParameter = vars.get(&quot;channel&quot;);//In Use
+String sURLFromParameter = vars.get(&quot;BASE_URL_1&quot;);
+
+log.info(&quot;Channel Type is &quot;+ sChannelFromParameter); 
+String sVerifychannel=&quot;web&quot;
+if(sVerifychannel == sChannelFromParameter )   
+ log.info(&quot;Channel is Web Request Type&quot;);   
+else  
+ log.error(&quot;Channel is Not Web Request Type&quot;);
+
+
+</samplerData>
+</sample>
+<httpSample t="95" it="0" lt="95" ct="0" ts="1594634815784" s="true" lb="GetDateTime" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="UTF-8" by="516" sby="466" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:40 GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+Set-Cookie: ci_sessions=tqpnm84nk2esdu891lnb2a8ecrrokoi8; expires=Mon, 13-Jul-2020 12:08:40 GMT; Max-Age=7200; path=/; HttpOnly
+Content-Length: 20
+Content-Encoding: gzip
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/javascript, */*; q=0.01
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Content-Length: 0
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String"></responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String"></cookies>
+  <method class="java.lang.String">POST</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/home/wellness/get_deals_date_time</java.net.URL>
+</httpSample>
+<httpSample t="138" it="0" lt="138" ct="0" ts="1594634815882" s="true" lb="GetNetMedsTECHmsg" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="UTF-8" by="891" sby="548" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Authorization,X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, userid, authtoken
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:40 GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 300
+Content-Encoding: gzip
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+userid: 3517370
+authtoken: 6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:{&quot;title&quot;:&quot;netmeds_tech_msg&quot;,&quot;identifier&quot;:&quot;netmeds_tech_msg&quot;,&quot;content&quot;:&quot;Netmeds is a technology platform to facilitate transaction of business. The products and services are offered for sale by the sellers. The user authorizes the delivery personnel to be his agent for delivery of the goods. For details read &lt;a href=\&quot;\/terms-and-conditions\&quot; id=\&quot;netmeds_tech_msg\&quot; target=\&quot;_blank\&quot; rel=\&quot;noopener\&quot;&gt;Terms &amp;amp; Conditions&lt;\/a&gt;&quot;}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String">ci_sessions=tqpnm84nk2esdu891lnb2a8ecrrokoi8</cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/payment/config/getcmsblock?name=netmeds_tech_msg</java.net.URL>
+</httpSample>
+<httpSample t="107" it="0" lt="107" ct="0" ts="1594634816022" s="true" lb="GetCategoryConfigFormulaType" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="UTF-8" by="657" sby="551" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Authorization,X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, userid, authtoken
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:40 GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 67
+Content-Encoding: gzip
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+userid: 3517370
+authtoken: 6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;status&quot;:&quot;success&quot;,&quot;value&quot;:[&quot;lenses&quot;,&quot;groceries&quot;]}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String">ci_sessions=tqpnm84nk2esdu891lnb2a8ecrrokoi8</cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/payment/config/getcategconfig?name=cat-formula-type</java.net.URL>
+</httpSample>
+<httpSample t="84" it="0" lt="84" ct="0" ts="1594634816130" s="true" lb="GetConsultURL" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="UTF-8" by="674" sby="541" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Authorization,X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, userid, authtoken
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:40 GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 84
+Content-Encoding: gzip
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+userid: 3517370
+authtoken: 6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;status&quot;:&quot;success&quot;,&quot;value&quot;:&quot;https:\/\/consult.netmeds.com\/users\/&quot;}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String">ci_sessions=tqpnm84nk2esdu891lnb2a8ecrrokoi8</cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/payment/config/getconfig?name=consult-url</java.net.URL>
+</httpSample>
+<httpSample t="102" it="0" lt="102" ct="0" ts="1594634816217" s="true" lb="GetPaymentConfigURL" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="UTF-8" by="687" sby="538" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Authorization,X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, userid, authtoken
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:41 GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 97
+Content-Encoding: gzip
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+userid: 3517370
+authtoken: 6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;status&quot;:&quot;success&quot;,&quot;value&quot;:&quot;https:\/\/labs.netmeds.com\/#diagnostics\/order-history&quot;}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String">ci_sessions=tqpnm84nk2esdu891lnb2a8ecrrokoi8</cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/payment/config/getconfig?name=diag-url</java.net.URL>
+</httpSample>
+<httpSample t="90" it="0" lt="90" ct="0" ts="1594634816322" s="true" lb="GetCoreConfig" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="UTF-8" by="677" sby="544" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Authorization,X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, userid, authtoken
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:41 GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 87
+Content-Encoding: gzip
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+userid: 3517370
+authtoken: 6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;status&quot;:&quot;success&quot;,&quot;value&quot;:0,&quot;message&quot;:&quot;Required config is disabled&quot;}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String">ci_sessions=tqpnm84nk2esdu891lnb2a8ecrrokoi8</cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/payment/config/getcoreconfig?name=ehr-enable</java.net.URL>
+</httpSample>
+<httpSample t="55" it="0" lt="54" ct="0" ts="1594634816416" s="true" lb="Btn_LogOut" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="" by="2857" sby="492" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: text/html
+Last-Modified: Tue, 02 Jun 2020 05:17:50 GMT
+Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:41 GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 2552
+Content-Encoding: gzip
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+userid: 
+authtoken: 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;Netmeds.com: Indian Online Pharmacy | Buy Medicines Online, Fast Delivery&lt;/title&gt;
+  &lt;base href=&quot;/&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no&quot;&gt;
+  &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;msassets/favicon.ico&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css&quot;&gt;
+  &lt;script src=&quot;msassets/env.js?v5&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;msassets/client.min.js?v5&quot;&gt;&lt;/script&gt;
+  &lt;!-- Google Tag Manager --&gt;
+  &lt;script&gt;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({&apos;gtm.start&apos;:
+  new Date().getTime(),event:&apos;gtm.js&apos;});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!=&apos;dataLayer&apos;?&apos;&amp;l=&apos;+l:&apos;&apos;;j.async=true;j.src=
+  &apos;https://www.googletagmanager.com/gtm.js?id=&apos;+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,&apos;script&apos;,&apos;dataLayer&apos;,window.__env.googleTagManagerId);
+  &lt;/script&gt;
+  &lt;!-- End Google Tag Manager --&gt;
+  &lt;!-- Anti-flicker snippet (recommended)  --&gt;
+  &lt;style&gt;.async-hide { opacity: 0 !important} &lt;/style&gt;
+  &lt;script&gt;
+  var tagmid = window.__env.googleTagManagerId;
+  (function(a,s,y,n,c,h,i,d,e){s.className+=&apos; &apos;+y;h.start=1*new Date;
+  h.end=i=function(){s.className=s.className.replace(RegExp(&apos; ?&apos;+y),&apos;&apos;)};
+  (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+  })(window,document.documentElement,&apos;async-hide&apos;,&apos;dataLayer&apos;,1000,
+  {tagmid:true});&lt;/script&gt;
+  &lt;style&gt;
+    .outer-border {background: url(/msassets/images/loader.gif) no-repeat center;transform: translate(-50%, -50%);left: 50%;top: 50%;position: absolute;text-align: center;padding: 18px;}
+    .loaderfix {position: fixed;width: 100%;height: 100%;background: rgba(255, 255, 255, 0.6);display: inline-block;z-index: 99999;}
+    .loaderfix .spinner-border {opacity: .6;}
+    &lt;/style&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/nms-cdn/styles.2b8019cc3c92023eb7e5.css&quot;&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;loaderfix&quot; id=&quot;first_loader&quot;&gt;
+    &lt;div class=&quot;outer-border&quot;&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Google Tag Manager (noscript) --&gt;
+  &lt;script&gt;
+    document.write(&apos;&lt;noscript&gt;&lt;iframe id=&quot;tagmframe&quot; src=&quot;https://www.googletagmanager.com/ns.html?id=&apos; + window.__env.googleTagManagerId + &apos;&quot; height=&quot;0&quot; width=&quot;0&quot; style=&quot;display:none;visibility:hidden&quot;&gt;&lt;/iframe&gt;&lt;/noscript&gt;&apos;);
+  &lt;/script&gt;
+  &lt;!-- End Google Tag Manager (noscript) --&gt;
+  &lt;app-root&gt;&lt;/app-root&gt;
+  &lt;!-- &lt;script type=&quot;text/javascript&quot; src=&quot;https://api.juspay.in/pay-v3.js&quot;&gt;&lt;/script&gt; --&gt;
+  &lt;script&gt;
+    (function(i, s, o, g, r, a, m) {
+        i[&apos;GoogleAnalyticsObject&apos;] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, &apos;script&apos;, &apos;https://www.google-analytics.com/analytics.js&apos;, &apos;ga&apos;);
+    ga(&apos;create&apos;, window.__env.googleAnalyticsId, &apos;auto&apos;);
+  &lt;/script&gt;
+  &lt;script id=&quot;_webengage_script_tag&quot; type=&quot;text/javascript&quot;&gt;
+		var webengage; !function(w,e,b,n,g){function o(e,t){e[t[t.length-1]]=function(){r.__queue.push([t.join(&quot;.&quot;),arguments])}}var i,s,r=w[b],z=&quot; &quot;,l=&quot;init options track screen onReady&quot;.split(z),a=&quot;feedback survey notification&quot;.split(z),c=&quot;options render clear abort&quot;.split(z),p=&quot;Open Close Submit Complete View Click&quot;.split(z),u=&quot;identify login logout setAttribute&quot;.split(z);if(!r||!r.__v){for(w[b]=r={__queue:[],__v:&quot;6.0&quot;,user:{}},i=0;i&lt;l.length;i++)o(r,[l[i]]);for(i=0;i&lt;a.length;i++){for(r[a[i]]={},s=0;s&lt;c.length;s++)o(r[a[i]],[a[i],c[s]]);for(s=0;s&lt;p.length;s++)o(r[a[i]],[a[i],&quot;on&quot;+p[s]])}for(i=0;i&lt;u.length;i++)o(r.user,[&quot;user&quot;,u[i]]);setTimeout(function(){var f=e.createElement(&quot;script&quot;),d=e.getElementById(&quot;_webengage_script_tag&quot;);f.type=&quot;text/javascript&quot;,f.async=!0,f.src=(&quot;https:&quot;==e.location.protocol?&quot;https://ssl.widgets.webengage.com&quot;:&quot;http://cdn.widgets.webengage.com&quot;)+&quot;/js/webengage-min-v-6.0.js&quot;,d.parentNode.insertBefore(f,d)})}}(window,document,&quot;webengage&quot;);
+		webengage.options(&apos;delay&apos;,2000);
+		webengage.options(&apos;webpush.registerServiceWorker&apos;, false);
+		webengage.init(window.__env.webEngageId);
+  &lt;/script&gt;
+  &lt;script&gt;
+    var ALGOLIA_INSIGHTS_SRC = &quot;//cdn.jsdelivr.net/npm/search-insights@1.3.1&quot;;
+  
+    !function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){
+    (e[s].queue=e[s].queue||[]).push(arguments)},i=a.createElement(t),c=a.getElementsByTagName(t)[0],
+    i.async=1,i.src=n,c.parentNode.insertBefore(i,c)
+    }(window,document,&quot;script&quot;,ALGOLIA_INSIGHTS_SRC,&quot;aa&quot;);
+  
+    // Initialize library
+    aa(&apos;init&apos;, {
+      appId: window.__env.alappId,
+      apiKey: window.__env.alapiKey
+    });
+  &lt;/script&gt;
+  &lt;script&gt;
+    var client = new ClientJS();
+  &lt;/script&gt;
+  &lt;!-- BrainSINS Code Starts --&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    brainsins_token = window.__env.brainsinsToken;
+  &lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;//d2xkqxdy6ewr93.cloudfront.net/brainsins.js&quot; charset=&quot;UTF-8&quot;&gt;&lt;/script&gt;
+  &lt;!-- BrainSINS Code Ends --&gt;
+&lt;script src=&quot;/nms-cdn/runtime.04028e4723d26db1aa94.js&quot; defer&gt;&lt;/script&gt;&lt;script src=&quot;/nms-cdn/polyfills-es5.762dd378e6725a7a7d68.js&quot; nomodule defer&gt;&lt;/script&gt;&lt;script src=&quot;/nms-cdn/polyfills.4b8fe8f884ba34fad06a.js&quot; defer&gt;&lt;/script&gt;&lt;script src=&quot;/nms-cdn/scripts.e23f128fbb6a59722b0e.js&quot; defer&gt;&lt;/script&gt;&lt;script src=&quot;/nms-cdn/vendor.ef23c95d202aea2405ab.js&quot; defer&gt;&lt;/script&gt;&lt;script src=&quot;/nms-cdn/main.225af048f89824b980e0.js&quot; defer&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String">ci_sessions=tqpnm84nk2esdu891lnb2a8ecrrokoi8</cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/customer/account/logout?name=netmeds_login_banner</java.net.URL>
+</httpSample>
+<httpSample t="91" it="0" lt="91" ct="0" ts="1594634816474" s="true" lb="NetMeds_RedirectHomePage" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="UTF-8" by="787" sby="495" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String">HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, no-store, no-cache, must-revalidate, max-age=0
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Authorization,X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, userid, authtoken
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Accept-Ranges: bytes
+Date: Mon, 13 Jul 2020 10:08:41 GMT
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Length: 196
+Content-Encoding: gzip
+</responseHeader>
+  <requestHeader class="java.lang.String">Connection: keep-alive
+Accept: application/json, text/plain, */*
+userid: 
+authtoken: 
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Host: www.netmeds.com
+</requestHeader>
+  <responseData class="java.lang.String">{&quot;status&quot;:&quot;success&quot;,&quot;result&quot;:{&quot;title&quot;:&quot;netmeds_login_banner&quot;,&quot;identifier&quot;:&quot;netmeds_login_banner&quot;,&quot;content&quot;:&quot;&lt;img src=\&quot;https:\/\/www.netmeds.com\/images\/cms\/wysiwyg\/cms\/1588773798_sign-in-banner-new.png\&quot; alt=\&quot;sign-in banner\&quot; width=\&quot;488\&quot; height=\&quot;528\&quot; \/&gt;&quot;}}</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <cookies class="java.lang.String">ci_sessions=tqpnm84nk2esdu891lnb2a8ecrrokoi8</cookies>
+  <method class="java.lang.String">GET</method>
+  <queryString class="java.lang.String"></queryString>
+  <java.net.URL>https://www.netmeds.com/payment/config/getcmsblock?name=netmeds_login_banner</java.net.URL>
+</httpSample>
+<sample t="44" it="0" lt="0" ct="0" ts="1594634816567" s="true" lb="VerifycationSampler" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" de="" by="0" sby="0" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String"></responseHeader>
+  <requestHeader class="java.lang.String"></requestHeader>
+  <responseData class="java.lang.String"></responseData>
+  <responseFile class="java.lang.String"></responseFile>
+  <samplerData class="java.lang.String">log.info(&quot;Current Sampler class is: &quot; + ctx.getCurrentSampler());
+
+String sChannelFromParameter = vars.get(&quot;name&quot;);
+
+log.info(&quot;The Page is Redirected to  &quot;+ sChannelFromParameter +&quot; Home Page&quot;); 
+String sHomePage=&quot;netmeds_login_banner&quot;
+if(sChannelFromParameter == sHomePage )   
+ log.info(&quot;LogOut Sucessfully and Page is navigated to Home Page&quot;);   
+else  
+ log.error(&quot;Failed to Logout and Page is not redirected to Home Page&quot;);
+
+
+</samplerData>
+</sample>
+<sample t="3915" it="160" lt="3753" ct="259" ts="1594634812536" s="true" lb="Test_NetMeds" rc="200" rm="Number of samples in transaction : 13, number of failing samples : 0" tn="Thread Group 1-1" dt="" de="" by="8904" sby="5058" sc="1" ec="0" ng="1" na="1" hn="MSdes03">
+  <responseHeader class="java.lang.String"></responseHeader>
+  <requestHeader class="java.lang.String"></requestHeader>
+  <responseData class="java.lang.String">Non-TEXT response data, cannot record: ()</responseData>
+  <responseFile class="java.lang.String"></responseFile>
+</sample>
+
+</testResults>

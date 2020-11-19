@@ -1,0 +1,448 @@
+2020-11-18 16:40:56,264 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2020-11-18 16:40:56,324 INFO o.a.j.JMeter: Loading user properties from: user.properties
+2020-11-18 16:40:56,340 INFO o.a.j.JMeter: Loading system properties from: system.properties
+2020-11-18 16:40:56,342 INFO o.a.j.JMeter: Copyright (c) 1998-2020 The Apache Software Foundation
+2020-11-18 16:40:56,342 INFO o.a.j.JMeter: Version 5.3
+2020-11-18 16:40:56,342 INFO o.a.j.JMeter: java.version=1.8.0_261
+2020-11-18 16:40:56,342 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) Client VM
+2020-11-18 16:40:56,342 INFO o.a.j.JMeter: os.name=Windows 10
+2020-11-18 16:40:56,342 INFO o.a.j.JMeter: os.arch=x86
+2020-11-18 16:40:56,342 INFO o.a.j.JMeter: os.version=10.0
+2020-11-18 16:40:56,343 INFO o.a.j.JMeter: file.encoding=Cp1252
+2020-11-18 16:40:56,343 INFO o.a.j.JMeter: java.awt.headless=null
+2020-11-18 16:40:56,343 INFO o.a.j.JMeter: Max memory     =1073741824
+2020-11-18 16:40:56,343 INFO o.a.j.JMeter: Available Processors =8
+2020-11-18 16:40:56,357 INFO o.a.j.JMeter: Default Locale=English (EN)
+2020-11-18 16:40:56,357 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2020-11-18 16:40:56,358 INFO o.a.j.JMeter: JMeterHome=C:\apache-jmeter-5.3
+2020-11-18 16:40:56,358 INFO o.a.j.JMeter: user.dir  =C:\apache-jmeter-5.3\bin
+2020-11-18 16:40:56,358 INFO o.a.j.JMeter: PWD       =C:\apache-jmeter-5.3\bin
+2020-11-18 16:40:56,370 INFO o.a.j.JMeter: IP: 10.10.20.125 Name: MSDES11 FullName: MSDES11.ad.matryxsoft.com
+2020-11-18 16:40:56,970 INFO o.a.j.JMeter: Setting LAF to: laf:javax.swing.plaf.metal.MetalLookAndFeel
+2020-11-18 16:40:57,591 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2020-11-18 16:42:47,283 INFO o.a.j.s.FileServer: Default base='C:\apache-jmeter-5.3\bin'
+2020-11-18 16:42:47,297 INFO o.a.j.g.a.Load: Loading file: D:\Dileep\apache-jmeter-5.3\extras\Netmeds_WorkingProject.jmx
+2020-11-18 16:42:47,297 INFO o.a.j.s.FileServer: Set new base='D:\Dileep\apache-jmeter-5.3\extras'
+2020-11-18 16:42:47,577 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2020-11-18 16:42:47,628 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2020-11-18 16:42:47,629 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2020-11-18 16:42:47,633 INFO o.a.j.s.SaveService: Loading file: D:\Dileep\apache-jmeter-5.3\extras\Netmeds_WorkingProject.jmx
+2020-11-18 16:42:47,633 WARN o.a.j.g.a.Load: Error reading file. java.io.FileNotFoundException: D:\Dileep\apache-jmeter-5.3\extras\Netmeds_WorkingProject.jmx (The system cannot find the path specified)
+2020-11-18 16:42:54,435 INFO o.a.j.g.a.Load: Loading file: G:\SharedFolder\Dileep\JMeterWorkspace\JmeterProjects\Netmeds_WorkingProject.jmx
+2020-11-18 16:42:54,436 INFO o.a.j.s.FileServer: Set new base='G:\SharedFolder\Dileep\JMeterWorkspace\JmeterProjects'
+2020-11-18 16:42:54,436 INFO o.a.j.s.SaveService: Loading file: G:\SharedFolder\Dileep\JMeterWorkspace\JmeterProjects\Netmeds_WorkingProject.jmx
+2020-11-18 16:42:54,575 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2020-11-18 16:42:54,577 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
+2020-11-18 16:42:54,590 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-11-18 16:42:54,590 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-11-18 16:42:54,590 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-11-18 16:42:54,590 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-11-18 16:42:54,590 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2020-11-18 16:42:54,591 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2020-11-18 16:42:55,337 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2020-11-18 16:42:55,337 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2020-11-18 16:42:55,337 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2020-11-18 16:42:55,337 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2020-11-18 16:42:57,669 INFO o.a.j.s.FileServer: Set new base='G:\SharedFolder\Dileep\JMeterWorkspace\JmeterProjects'
+2020-11-18 16:43:22,739 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-11-18 16:43:22,740 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-11-18 16:43:22,740 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-11-18 16:43:22,741 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2020-11-18 16:43:22,742 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2020-11-18 16:43:23,680 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2020-11-18 16:43:23,815 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2020-11-18 16:43:23,815 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 16:43:23,815 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 16:43:23,816 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 16:43:23,821 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-11-18 16:43:23,821 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : Thread Group
+2020-11-18 16:43:23,821 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 16:43:23,821 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 16:43:23,821 INFO o.a.j.t.ThreadGroup: Starting thread group... number=2 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 16:43:23,823 INFO o.a.j.t.ThreadGroup: Started thread group number 2
+2020-11-18 16:43:23,823 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-11-18 16:43:23,824 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 2-1
+2020-11-18 16:43:23,825 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2020-11-18 16:43:23,827 INFO o.a.j.s.FileServer: Stored: D:/Test.csv
+2020-11-18 16:43:23,827 ERROR o.a.j.t.JMeterThread: Test failed!
+java.lang.IllegalArgumentException: Could not read file header line for file D:/Test.csv
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:283) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.config.CSVDataSet.iterationStart(CSVDataSet.java:190) ~[ApacheJMeter_components.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterationStart(GenericController.java:398) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterEvents(GenericController.java:390) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.next(GenericController.java:159) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.LoopController.next(LoopController.java:134) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.next(AbstractThreadGroup.java:91) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:254) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: java.lang.IllegalArgumentException: File Test.csv must exist and be readable
+	at org.apache.jmeter.services.FileServer.createBufferedReader(FileServer.java:424) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:340) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:324) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:272) ~[ApacheJMeter_core.jar:5.3]
+	... 8 more
+2020-11-18 16:43:23,827 ERROR o.a.j.t.JMeterThread: Test failed!
+java.lang.IllegalArgumentException: Could not read file header line for file D:/Test.csv
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:283) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.config.CSVDataSet.iterationStart(CSVDataSet.java:190) ~[ApacheJMeter_components.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterationStart(GenericController.java:398) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterEvents(GenericController.java:390) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.next(GenericController.java:159) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.LoopController.next(LoopController.java:134) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.next(AbstractThreadGroup.java:91) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:254) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: java.lang.IllegalArgumentException: File Test.csv must exist and be readable
+	at org.apache.jmeter.services.FileServer.createBufferedReader(FileServer.java:424) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:340) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:324) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:272) ~[ApacheJMeter_core.jar:5.3]
+	... 8 more
+2020-11-18 16:43:23,844 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2020-11-18 16:43:23,844 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 2-1
+2020-11-18 16:43:23,845 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-11-18 16:43:23,845 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2020-11-18 16:43:39,917 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-11-18 16:43:39,917 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-11-18 16:43:39,921 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2020-11-18 16:43:40,002 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2020-11-18 16:43:40,003 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 16:43:40,003 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 16:43:40,003 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 16:43:40,005 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-11-18 16:43:40,005 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : Thread Group
+2020-11-18 16:43:40,005 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 16:43:40,005 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 16:43:40,005 INFO o.a.j.t.ThreadGroup: Starting thread group... number=2 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 16:43:40,005 INFO o.a.j.t.ThreadGroup: Started thread group number 2
+2020-11-18 16:43:40,006 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-11-18 16:43:40,006 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 2-1
+2020-11-18 16:43:40,006 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2020-11-18 16:43:40,006 INFO o.a.j.s.FileServer: Stored: D:/Test.csv
+2020-11-18 16:43:40,007 ERROR o.a.j.t.JMeterThread: Test failed!
+java.lang.IllegalArgumentException: Could not read file header line for file D:/Test.csv
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:283) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.config.CSVDataSet.iterationStart(CSVDataSet.java:190) ~[ApacheJMeter_components.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterationStart(GenericController.java:398) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterEvents(GenericController.java:390) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.next(GenericController.java:159) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.LoopController.next(LoopController.java:134) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.next(AbstractThreadGroup.java:91) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:254) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: java.lang.IllegalArgumentException: File Test.csv must exist and be readable
+	at org.apache.jmeter.services.FileServer.createBufferedReader(FileServer.java:424) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:340) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:324) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:272) ~[ApacheJMeter_core.jar:5.3]
+	... 8 more
+2020-11-18 16:43:40,007 ERROR o.a.j.t.JMeterThread: Test failed!
+java.lang.IllegalArgumentException: Could not read file header line for file D:/Test.csv
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:283) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.config.CSVDataSet.iterationStart(CSVDataSet.java:190) ~[ApacheJMeter_components.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterationStart(GenericController.java:398) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterEvents(GenericController.java:390) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.next(GenericController.java:159) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.LoopController.next(LoopController.java:134) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.next(AbstractThreadGroup.java:91) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:254) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: java.lang.IllegalArgumentException: File Test.csv must exist and be readable
+	at org.apache.jmeter.services.FileServer.createBufferedReader(FileServer.java:424) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:340) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:324) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:272) ~[ApacheJMeter_core.jar:5.3]
+	... 8 more
+2020-11-18 16:43:40,007 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 2-1
+2020-11-18 16:43:40,007 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2020-11-18 16:43:40,007 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-11-18 16:43:40,008 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2020-11-18 17:28:18,424 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-11-18 17:28:18,424 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-11-18 17:28:18,441 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2020-11-18 17:28:18,547 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2020-11-18 17:28:18,547 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:28:18,547 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:28:18,547 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:28:18,550 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-11-18 17:28:18,550 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : Thread Group
+2020-11-18 17:28:18,550 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:28:18,550 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:28:18,550 INFO o.a.j.t.ThreadGroup: Starting thread group... number=2 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:28:18,551 INFO o.a.j.t.ThreadGroup: Started thread group number 2
+2020-11-18 17:28:18,551 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-11-18 17:28:18,551 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2020-11-18 17:28:18,551 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 2-1
+2020-11-18 17:28:18,552 INFO o.a.j.s.FileServer: Stored: D:/Test.csv
+2020-11-18 17:28:18,552 ERROR o.a.j.t.JMeterThread: Test failed!
+java.lang.IllegalArgumentException: Could not read file header line for file D:/Test.csv
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:283) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.config.CSVDataSet.iterationStart(CSVDataSet.java:190) ~[ApacheJMeter_components.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterationStart(GenericController.java:398) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterEvents(GenericController.java:390) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.next(GenericController.java:159) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.LoopController.next(LoopController.java:134) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.next(AbstractThreadGroup.java:91) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:254) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: java.lang.IllegalArgumentException: File Test.csv must exist and be readable
+	at org.apache.jmeter.services.FileServer.createBufferedReader(FileServer.java:424) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:340) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:324) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:272) ~[ApacheJMeter_core.jar:5.3]
+	... 8 more
+2020-11-18 17:28:18,552 ERROR o.a.j.t.JMeterThread: Test failed!
+java.lang.IllegalArgumentException: Could not read file header line for file D:/Test.csv
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:283) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.config.CSVDataSet.iterationStart(CSVDataSet.java:190) ~[ApacheJMeter_components.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterationStart(GenericController.java:398) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterEvents(GenericController.java:390) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.next(GenericController.java:159) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.LoopController.next(LoopController.java:134) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.next(AbstractThreadGroup.java:91) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:254) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: java.lang.IllegalArgumentException: File Test.csv must exist and be readable
+	at org.apache.jmeter.services.FileServer.createBufferedReader(FileServer.java:424) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:340) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:324) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:272) ~[ApacheJMeter_core.jar:5.3]
+	... 8 more
+2020-11-18 17:28:18,553 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2020-11-18 17:28:18,553 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 2-1
+2020-11-18 17:28:18,553 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-11-18 17:28:18,553 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2020-11-18 17:38:09,907 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-11-18 17:38:09,907 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-11-18 17:38:09,910 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2020-11-18 17:38:09,990 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2020-11-18 17:38:09,991 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:38:09,991 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:38:09,991 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:38:09,993 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-11-18 17:38:09,993 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : Thread Group
+2020-11-18 17:38:09,993 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:38:09,993 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:38:09,993 INFO o.a.j.t.ThreadGroup: Starting thread group... number=2 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:38:09,994 INFO o.a.j.t.ThreadGroup: Started thread group number 2
+2020-11-18 17:38:09,994 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-11-18 17:38:09,994 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2020-11-18 17:38:09,994 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 2-1
+2020-11-18 17:38:09,994 INFO o.a.j.s.FileServer: Stored: D:/Test.csv
+2020-11-18 17:38:09,995 ERROR o.a.j.t.JMeterThread: Test failed!
+java.lang.IllegalArgumentException: Could not read file header line for file D:/Test.csv
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:283) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.config.CSVDataSet.iterationStart(CSVDataSet.java:190) ~[ApacheJMeter_components.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterationStart(GenericController.java:398) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterEvents(GenericController.java:390) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.next(GenericController.java:159) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.LoopController.next(LoopController.java:134) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.next(AbstractThreadGroup.java:91) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:254) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: java.lang.IllegalArgumentException: File Test.csv must exist and be readable
+	at org.apache.jmeter.services.FileServer.createBufferedReader(FileServer.java:424) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:340) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:324) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:272) ~[ApacheJMeter_core.jar:5.3]
+	... 8 more
+2020-11-18 17:38:09,995 ERROR o.a.j.t.JMeterThread: Test failed!
+java.lang.IllegalArgumentException: Could not read file header line for file D:/Test.csv
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:283) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.config.CSVDataSet.iterationStart(CSVDataSet.java:190) ~[ApacheJMeter_components.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterationStart(GenericController.java:398) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.fireIterEvents(GenericController.java:390) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.GenericController.next(GenericController.java:159) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.control.LoopController.next(LoopController.java:134) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.AbstractThreadGroup.next(AbstractThreadGroup.java:91) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:254) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: java.lang.IllegalArgumentException: File Test.csv must exist and be readable
+	at org.apache.jmeter.services.FileServer.createBufferedReader(FileServer.java:424) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:340) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.readLine(FileServer.java:324) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.services.FileServer.reserveFile(FileServer.java:272) ~[ApacheJMeter_core.jar:5.3]
+	... 8 more
+2020-11-18 17:38:09,995 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 2-1
+2020-11-18 17:38:09,995 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2020-11-18 17:38:09,996 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-11-18 17:38:09,996 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2020-11-18 17:39:23,427 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-11-18 17:39:23,427 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-11-18 17:39:23,431 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2020-11-18 17:39:23,505 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2020-11-18 17:39:23,505 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:39:23,505 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:39:23,505 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:39:23,507 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-11-18 17:39:23,507 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : Thread Group
+2020-11-18 17:39:23,507 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:39:23,507 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:39:23,507 INFO o.a.j.t.ThreadGroup: Starting thread group... number=2 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:39:23,508 INFO o.a.j.t.ThreadGroup: Started thread group number 2
+2020-11-18 17:39:23,508 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-11-18 17:39:23,508 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 2-1
+2020-11-18 17:39:23,508 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2020-11-18 17:39:23,508 INFO o.a.j.s.FileServer: Stored: D:/Test.csv
+2020-11-18 17:39:23,531 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 2-1
+2020-11-18 17:39:23,532 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 2-1
+2020-11-18 17:39:23,606 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = MSDES11
+2020-11-18 17:39:23,646 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2020-11-18 17:39:23,839 INFO o.a.j.p.h.s.h.LazyLayeredConnectionSocketFactory: Setting up HTTPS TrustAll Socket Factory
+2020-11-18 17:39:23,844 INFO o.a.j.u.JsseSSLManager: Using default SSL protocol: TLS
+2020-11-18 17:39:23,844 INFO o.a.j.u.JsseSSLManager: SSL session context: per-thread
+2020-11-18 17:39:25,101 INFO o.a.j.u.SSLManager: JmeterKeyStore Location:  type JKS
+2020-11-18 17:39:25,102 INFO o.a.j.u.SSLManager: KeyStore created OK
+2020-11-18 17:39:25,102 WARN o.a.j.u.SSLManager: Keystore file not found, loading empty keystore
+2020-11-18 17:39:26,679 ERROR o.a.j.p.j.s.JSR223Sampler: Problem in JSR223 script FetchRecordFromExcel_Sampler, message: javax.script.ScriptException: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+Script1.groovy: 2: Unexpected input: 'import' @ line 2, column 1.
+   import org.apache.poi.ss.usermodel.*
+   ^
+
+1 error
+
+javax.script.ScriptException: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+Script1.groovy: 2: Unexpected input: 'import' @ line 2, column 1.
+   import org.apache.poi.ss.usermodel.*
+   ^
+
+1 error
+
+	at org.codehaus.groovy.jsr223.GroovyScriptEngineImpl.compile(GroovyScriptEngineImpl.java:183) ~[groovy-jsr223-3.0.3.jar:3.0.3]
+	at org.apache.jmeter.util.JSR223TestElement.processFileOrScript(JSR223TestElement.java:216) ~[ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.protocol.java.sampler.JSR223Sampler.sample(JSR223Sampler.java:72) [ApacheJMeter_java.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.doSampling(JMeterThread.java:630) [ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:558) [ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:489) [ApacheJMeter_core.jar:5.3]
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:256) [ApacheJMeter_core.jar:5.3]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_261]
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+Script1.groovy: 2: Unexpected input: 'import' @ line 2, column 1.
+   import org.apache.poi.ss.usermodel.*
+   ^
+
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:287) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:143) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.AstBuilder.collectSyntaxError(AstBuilder.java:4544) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.AstBuilder.access$000(AstBuilder.java:341) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.AstBuilder$1.syntaxError(AstBuilder.java:4559) ~[groovy-3.0.3.jar:3.0.3]
+	at groovyjarjarantlr4.v4.runtime.ProxyErrorListener.syntaxError(ProxyErrorListener.java:44) ~[groovy-3.0.3.jar:3.0.3]
+	at groovyjarjarantlr4.v4.runtime.Parser.notifyErrorListeners(Parser.java:543) ~[groovy-3.0.3.jar:3.0.3]
+	at groovyjarjarantlr4.v4.runtime.DefaultErrorStrategy.notifyErrorListeners(DefaultErrorStrategy.java:154) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.internal.DescriptiveErrorStrategy.reportNoViableAlternative(DescriptiveErrorStrategy.java:92) ~[groovy-3.0.3.jar:3.0.3]
+	at groovyjarjarantlr4.v4.runtime.DefaultErrorStrategy.reportError(DefaultErrorStrategy.java:139) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.expression(GroovyParser.java:9139) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.namedPropertyArg(GroovyParser.java:10623) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.enhancedArgumentListElement(GroovyParser.java:11465) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.enhancedArgumentList(GroovyParser.java:11345) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.arguments(GroovyParser.java:11235) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.pathElement(GroovyParser.java:9623) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.pathExpression(GroovyParser.java:9439) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.postfixExpression(GroovyParser.java:8078) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.expression(GroovyParser.java:8620) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.commandExpression(GroovyParser.java:9269) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.statementExpression(GroovyParser.java:8037) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.statement(GroovyParser.java:6884) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.scriptStatement(GroovyParser.java:500) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.scriptStatements(GroovyParser.java:409) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.GroovyParser.compilationUnit(GroovyParser.java:356) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.AstBuilder.buildCST(AstBuilder.java:405) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.AstBuilder.buildCST(AstBuilder.java:384) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.AstBuilder.buildAST(AstBuilder.java:424) ~[groovy-3.0.3.jar:3.0.3]
+	at org.apache.groovy.parser.antlr4.Antlr4ParserPlugin.buildAST(Antlr4ParserPlugin.java:58) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.control.SourceUnit.convert(SourceUnit.java:244) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.control.CompilationUnit.lambda$addPhaseOperations$1(CompilationUnit.java:191) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.control.CompilationUnit$ISourceUnitOperation.doPhaseOperation(CompilationUnit.java:880) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:650) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:627) ~[groovy-3.0.3.jar:3.0.3]
+	at groovy.lang.GroovyClassLoader.doParseClass(GroovyClassLoader.java:389) ~[groovy-3.0.3.jar:3.0.3]
+	at groovy.lang.GroovyClassLoader.lambda$parseClass$3(GroovyClassLoader.java:332) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.runtime.memoize.StampedCommonCache.compute(StampedCommonCache.java:163) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.runtime.memoize.StampedCommonCache.getAndPut(StampedCommonCache.java:154) ~[groovy-3.0.3.jar:3.0.3]
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:330) ~[groovy-3.0.3.jar:3.0.3]
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:314) ~[groovy-3.0.3.jar:3.0.3]
+	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:257) ~[groovy-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.jsr223.GroovyScriptEngineImpl.getScriptClass(GroovyScriptEngineImpl.java:336) ~[groovy-jsr223-3.0.3.jar:3.0.3]
+	at org.codehaus.groovy.jsr223.GroovyScriptEngineImpl.compile(GroovyScriptEngineImpl.java:181) ~[groovy-jsr223-3.0.3.jar:3.0.3]
+	... 7 more
+2020-11-18 17:39:27,205 INFO o.a.j.p.j.s.J.VerifycationSampler: Current Sampler class is: org.apache.jmeter.protocol.java.sampler.JSR223Sampler@1e305be
+2020-11-18 17:39:27,208 INFO o.a.j.p.j.s.J.VerifycationSampler: Channel Type is 
+2020-11-18 17:39:27,208 INFO o.a.j.p.j.s.J.VerifycationSampler: Channel is Web Request Type
+2020-11-18 17:39:28,004 INFO o.a.j.p.j.s.J.VerifycationSampler: Current Sampler class is: org.apache.jmeter.protocol.java.sampler.JSR223Sampler@53c133
+2020-11-18 17:39:28,005 INFO o.a.j.p.j.s.J.VerifycationSampler: The Page is Redirected to  netmeds_login_banner Home Page
+2020-11-18 17:39:28,005 INFO o.a.j.p.j.s.J.VerifycationSampler: LogOut Sucessfully and Page is navigated to Home Page
+2020-11-18 17:39:28,006 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 1-1
+2020-11-18 17:39:28,006 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2020-11-18 17:39:28,007 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-11-18 17:39:28,007 INFO o.a.j.s.FileServer: Close: D:/Test.csv
+2020-11-18 17:39:28,024 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2020-11-18 17:40:19,611 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-11-18 17:40:19,612 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-11-18 17:40:19,617 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2020-11-18 17:40:19,618 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2020-11-18 17:40:19,618 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:40:19,649 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:40:19,649 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:40:19,652 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-11-18 17:40:19,652 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : Thread Group
+2020-11-18 17:40:19,652 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:40:19,652 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:40:19,652 INFO o.a.j.t.ThreadGroup: Starting thread group... number=2 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:40:19,653 INFO o.a.j.t.ThreadGroup: Started thread group number 2
+2020-11-18 17:40:19,653 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-11-18 17:40:19,653 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2020-11-18 17:40:19,654 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 2-1
+2020-11-18 17:40:19,654 INFO o.a.j.s.FileServer: Stored: D:/Test.csv
+2020-11-18 17:40:19,655 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 2-1
+2020-11-18 17:40:19,655 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 2-1
+2020-11-18 17:40:19,901 INFO o.a.j.p.j.s.J.VerifycationSampler: Current Sampler class is: org.apache.jmeter.protocol.java.sampler.JSR223Sampler@c3d85c
+2020-11-18 17:40:19,901 INFO o.a.j.p.j.s.J.VerifycationSampler: Channel Type is 
+2020-11-18 17:40:19,901 INFO o.a.j.p.j.s.J.VerifycationSampler: Channel is Web Request Type
+2020-11-18 17:40:20,826 INFO o.a.j.p.j.s.J.VerifycationSampler: Current Sampler class is: org.apache.jmeter.protocol.java.sampler.JSR223Sampler@35b9cf
+2020-11-18 17:40:20,826 INFO o.a.j.p.j.s.J.VerifycationSampler: The Page is Redirected to  netmeds_login_banner Home Page
+2020-11-18 17:40:20,826 INFO o.a.j.p.j.s.J.VerifycationSampler: LogOut Sucessfully and Page is navigated to Home Page
+2020-11-18 17:40:20,827 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 1-1
+2020-11-18 17:40:20,827 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2020-11-18 17:40:20,827 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-11-18 17:40:20,827 INFO o.a.j.s.FileServer: Close: D:/Test.csv
+2020-11-18 17:40:20,829 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2020-11-18 17:45:15,473 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2020-11-18 17:45:15,474 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2020-11-18 17:45:15,478 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2020-11-18 17:45:15,479 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2020-11-18 17:45:15,479 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:45:15,479 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:45:15,479 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:45:15,487 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2020-11-18 17:45:15,487 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 2 : Thread Group
+2020-11-18 17:45:15,487 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2020-11-18 17:45:15,487 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2020-11-18 17:45:15,488 INFO o.a.j.t.ThreadGroup: Starting thread group... number=2 threads=1 ramp-up=1 delayedStart=false
+2020-11-18 17:45:15,488 INFO o.a.j.t.ThreadGroup: Started thread group number 2
+2020-11-18 17:45:15,488 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2020-11-18 17:45:15,488 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2020-11-18 17:45:15,488 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 2-1
+2020-11-18 17:45:15,489 INFO o.a.j.s.FileServer: Stored: D:/Test.csv
+2020-11-18 17:45:15,489 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 2-1
+2020-11-18 17:45:15,489 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 2-1
+2020-11-18 17:45:15,989 INFO o.a.j.p.j.s.J.FetchRecordFromExcel_Sampler: Start Time should be: Wed Nov 18 17:45:15 IST 2020
+2020-11-18 17:45:16,762 INFO o.a.j.p.j.s.J.FetchRecordFromExcel_Sampler: Number of Rows: 2
+2020-11-18 17:45:16,763 INFO o.a.j.p.j.s.J.FetchRecordFromExcel_Sampler: Number of Sheets: 1
+2020-11-18 17:45:16,775 INFO o.a.j.p.j.s.J.FetchRecordFromExcel_Sampler: UserName From Excel 8310618462
+
+2020-11-18 17:45:16,775 INFO o.a.j.p.j.s.J.FetchRecordFromExcel_Sampler: Password From Excel Matryx@123
+2020-11-18 17:45:16,780 INFO o.a.j.p.j.s.J.FetchRecordFromExcel_Sampler: Previous Response URL is: https://www.netmeds.com/mst/rest/v1/id/details/8310618462
+2020-11-18 17:45:16,781 INFO o.a.j.p.j.s.J.FetchRecordFromExcel_Sampler: Previous Response Time is: 173
+2020-11-18 17:45:16,851 INFO o.a.j.p.j.s.J.VerifycationSampler: Current Sampler class is: org.apache.jmeter.protocol.java.sampler.JSR223Sampler@d2e5b4
+2020-11-18 17:45:16,851 INFO o.a.j.p.j.s.J.VerifycationSampler: Channel Type is web123
+2020-11-18 17:45:16,851 INFO o.a.j.p.j.s.J.VerifycationSampler: Channel is Web Request Type
+2020-11-18 17:45:17,576 INFO o.a.j.p.j.s.J.VerifycationSampler: Current Sampler class is: org.apache.jmeter.protocol.java.sampler.JSR223Sampler@7ba7f7
+2020-11-18 17:45:17,577 INFO o.a.j.p.j.s.J.VerifycationSampler: The Page is Redirected to  netmeds_login_banner Home Page
+2020-11-18 17:45:17,577 INFO o.a.j.p.j.s.J.VerifycationSampler: LogOut Sucessfully and Page is navigated to Home Page
+2020-11-18 17:45:17,577 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 1-1
+2020-11-18 17:45:17,578 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2020-11-18 17:45:17,580 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2020-11-18 17:45:17,580 INFO o.a.j.s.FileServer: Close: D:/Test.csv
+2020-11-18 17:45:17,582 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)

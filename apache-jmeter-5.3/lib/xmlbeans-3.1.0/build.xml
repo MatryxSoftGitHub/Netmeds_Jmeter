@@ -1,0 +1,631 @@
+<!--
+    Copyright 2004 The Apache Software Foundation
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<project name="XMLBeans" default="process-resources" basedir="." xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+    <property name="build.compiler" value="javac1.6"/>
+    <property name="ant.build.javac.source" value="1.6"/>
+    <property name="ant.build.javac.target" value="1.6"/>
+
+    <property name="version.base" value="3.1.0"/>
+    <property name="version.rc" value=""/>
+
+    <property name="repository.m2" value="http://repo1.maven.org"/>
+    <property environment="ENV"/>
+
+    <property name="compile.lib" location="compile-lib"/>
+
+    <!-- Apache RAT license check properties -->
+    <property name="rat.reportdir" value="build/rat"/>
+    <property name="rat.report" value="${rat.reportdir}/report.txt"/>
+    <property name="rat.jar" location="${compile.lib}/apache-rat-0.12.jar"/>
+    <property name="rat.url" value="${repository.m2}/maven2/org/apache/rat/apache-rat/0.12/apache-rat-0.12.jar"/>
+
+    <!-- api checks -->
+    <property name="forbidden.jar" location="${compile.lib}/forbiddenapis-2.5.jar"/>
+    <property name="forbidden.url" value="${repository.m2}/maven2/de/thetaphi/forbiddenapis/2.5/forbiddenapis-2.5.jar"/>
+
+    <!-- dependencies -->
+
+    <!-- other saxon urls
+        http://voxel.dl.sourceforge.net/sourceforge/saxon/saxonb8-1.zip
+        http://easynews.dl.sourceforge.net/sourceforge/saxon/saxonb8-7-3j.zip
+        http://easynews.dl.sourceforge.net/sourceforge/saxon/saxonb8-8j.zip
+    -->
+    <property name="saxon.zip" location="${compile.lib}/saxonb9-0-0-4j.zip"/>
+    <property name="saxon.jar" location="${compile.lib}/saxon9.jar"/>
+    <property name="saxon-dom.jar" location="${compile.lib}/saxon9-dom.jar"/>
+    <property name="saxon.url" value="http://master.dl.sourceforge.net/project/saxon/OldFiles/9.0/9.0.0.4/saxonb9-0-0-4j.zip"/>
+
+    <property name="xcresolver.zip" location="${compile.lib}/xcresolver.zip"/>
+    <property name="xcresolver.jar" location="${compile.lib}/resolver.jar"/>
+    <property name="xcresolver.url" value="http://archive.apache.org/dist/xml/commons/binaries/xml-commons-resolver-1.1.zip"/>
+
+    <!-- test dependencies -->
+    <property name="junit.jar" location="${compile.lib}/junit-4.12.jar"/>
+    <property name="junit.url" value="${repository.m2}/maven2/junit/junit/4.12/junit-4.12.jar"/>
+    <property name="hamcrest.jar" location="${compile.lib}/hamcrest-core-1.3.jar"/>
+    <property name="hamcrest.url" value="${repository.m2}/maven2/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+
+    <property name="xerces.jar" location="${compile.lib}/xercesImpl-2.11.0.jar"/>
+    <property name="xerces.url" value="${repository.m2}/maven2/xerces/xercesImpl/2.11.0/xercesImpl-2.11.0.jar"/>
+
+    <property name="xml-apis.jar" location="${compile.lib}/xml-apis-1.4.01.jar"/>
+    <property name="xml-apis.url" value="${repository.m2}/maven2/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar"/>
+
+    <path id="saxon">
+        <pathelement location="${saxon.jar}"/>
+        <pathelement location="${saxon-dom.jar}"/>
+    </path>
+
+    <path id="xmlbeans-test">
+        <pathelement location="build/classes"/>
+        <pathelement location="build/generated-resources"/>
+        <dirset dir="resources" includes="*"/>
+        <path refid="saxon"/>
+        <pathelement location="${xcresolver.jar}"/>
+        <pathelement location="test/lib/w3c_domts.jar"/>
+        <pathelement location="${junit.jar}"/>
+        <pathelement location="${hamcrest.jar}"/>
+        <pathelement location="${xerces.jar}"/>
+        <pathelement location="${xml-apis.jar}"/>
+        <pathelement location="${ENV.JAVA_HOME}/lib/tools.jar"/>
+    </path>
+
+    <path id="sources">
+        <pathelement location="src/xmlinputstream"/>
+        <pathelement location="src/xmlpublic"/>
+        <pathelement location="src/common"/>
+        <pathelement location="src/typestore"/>
+        <pathelement location="src/saaj_api"/>
+        <pathelement location="src/store"/>
+        <pathelement location="src/xpath_xquery"/>
+        <!-- the next sources depend on the oldxbean.jar -->
+        <pathelement location="src/typeimpl"/>
+        <pathelement location="src/marshal"/>
+        <pathelement location="src/repackage"/>
+        <pathelement location="src/tools"/>
+        <pathelement location="src/toolschema"/>
+        <pathelement location="src/typestore"/>
+        <pathelement location="src/xmlcomp"/>
+        <pathelement location="src/xmlconfig"/>
+        <pathelement location="src/jamsupport"/>
+        <pathelement location="build/generated-sources"/>
+    </path>
+
+
+    <target name="usage" description="Shows the projecthelp">
+        <java classname="org.apache.tools.ant.Main">
+            <arg value="-projecthelp" />
+        </java>
+    </target>
+
+    <target name="clean" description="Cleans out the xbeans directories">
+        <delete dir="build"/>
+    </target>
+
+    <target name="-check-jars" description="Removes old dependencies and verifies downloaded ones">
+        <mkdir dir="${compile.lib}"/>
+        <!-- remove previous versions of third-party jars to prevent them from lingering around,
+            we often had hard-to-find build/CI-problems because of these! -->
+        <delete>
+            <fileset dir="${compile.lib}">
+                <include name="saxonb8-8j.zip"/>
+                <include name="saxonb8-7-3j.zip"/>
+                <include name="saxonb8-6-1.zip"/>
+                <include name="saxonb8-2.zip"/>
+                <include name="saxonb8-1.zip"/>
+                <include name="saxon8.jar"/>
+                <include name="saxon8-dom.jar"/>
+            </fileset>
+        </delete>
+        <condition property="jars.present">
+            <or>
+                <and>
+                    <available file="${saxon.jar}"/>
+                    <available file="${xcresolver.jar}"/>
+                    <available file="${junit.jar}"/>
+                    <available file="${hamcrest.jar}"/>
+                    <available file="${xerces.jar}"/>
+                    <available file="${xml-apis.jar}"/>
+                </and>
+                <isset property="disconnected"/>
+            </or>
+        </condition>
+    </target>
+
+    <macrodef name="downloadfile">
+        <attribute name="src"/>
+        <attribute name="dest"/>
+        <sequential>
+            <echo>src: @{src}</echo>
+            <echo>dest: @{dest}</echo>
+            <!--fail
+                message="Java version might be uncapable to download https URLs - see https://stackoverflow.com/questions/6851461/java-why-does-ssl-handshake-give-could-not-generate-dh-keypair-exception">
+                <condition>
+                    <and>
+                        <equals arg1="${ant.java.version}" arg2="1.6"/>
+                        <contains string="@{src}" substring="https"/>
+                    </and>
+                </condition>
+            </fail-->
+            <get src="@{src}" dest="@{dest}" skipexisting="true"/>
+        </sequential>
+    </macrodef>
+
+    <target name="-fetch-jars" depends="-check-jars" unless="jars.present"
+            description="Fetches needed JAR files from the Internet">
+        <downloadfile dest="${saxon.zip}" src="${saxon.url}"/>
+        <unzip src="${saxon.zip}" dest="${compile.lib}">
+            <patternset>
+                <include name="saxon9.jar"/>
+                <include name="saxon9-dom.jar"/>
+            </patternset>
+        </unzip>
+        <downloadfile dest="${xcresolver.zip}" src="${xcresolver.url}"/>
+        <unzip src="${xcresolver.zip}" dest="${compile.lib}">
+            <patternset>
+                <include name="*/resolver.jar"/>
+            </patternset>
+            <mapper type="flatten"/>
+        </unzip>
+        <downloadfile dest="${junit.jar}" src="${junit.url}"/>
+        <downloadfile dest="${hamcrest.jar}" src="${hamcrest.url}"/>
+        <downloadfile dest="${xerces.jar}" src="${xerces.url}"/>
+        <downloadfile dest="${xml-apis.jar}" src="${xml-apis.url}"/>
+
+    </target>
+
+    <macrodef name="schemaComp">
+        <attribute name="schemaName"/>
+        <attribute name="src"/>
+        <attribute name="dest"/>
+        <attribute name="classpathref"/>
+        <sequential>
+            <local name="srcDir"/>
+            <local name="rscDir"/>
+            <local name="up2date"/>
+
+            <property name="srcDir" location="@{dest}/generated-sources"/>
+            <property name="rscDir" location="@{dest}/generated-resources"/>
+
+            <mkdir dir="${srcDir}"/>
+            <mkdir dir="${rscDir}"/>
+
+            <uptodate property="up2date" targetfile="${rscDir}/schemaorg_apache_xmlbeans/system/@{schemaName}/TypeSystemHolder.class">
+                <srcresources>
+                    <filelist dir="${basedir}" files="@{src}"/>
+                </srcresources>
+            </uptodate>
+
+            <java classname="org.apache.xmlbeans.impl.tool.SchemaCompiler" fork="true" failonerror="true" classpathref="@{classpathref}" unless:true="${up2date}">
+                <jvmarg value="-ea"/>
+                <arg line="-name @{schemaName} -srconly -noann -d ${rscDir} -src ${srcDir} @{src}"/>
+            </java>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="schemaCompProd">
+        <attribute name="classpathref"/>
+        <attribute name="dest"/>
+        <sequential>
+            <schemaComp schemaName="sXMLLANG" src="src/xmlschema/schema" dest="@{dest}" classpathref="@{classpathref}" />
+            <schemaComp schemaName="sXMLSCHEMA" src="src/xsdschema/schema" dest="@{dest}" classpathref="@{classpathref}" />
+            <schemaComp schemaName="sXMLCONFIG" src="src/configschema/schema" dest="@{dest}" classpathref="@{classpathref}" />
+            <schemaComp schemaName="sXMLTOOLS" src="src/toolschema" dest="@{dest}" classpathref="@{classpathref}" />
+        </sequential>
+    </macrodef>
+
+
+    <target name="process-resources" depends="-fetch-jars" description="Generate sources and resources based on schema files">
+        <mkdir dir="build/classes"/>
+
+        <copy todir="build/generated-sources/org/apache/xmlbeans/impl">
+            <zipfileset src="lib/jam-0.1.0-src.jar" includes="src/org/**"/>
+            <cutdirsmapper dirs="3"/>
+            <filterchain>
+                <replacestring from="org.codehaus.jam" to="org.apache.xmlbeans.impl.jam"/>
+            </filterchain>
+        </copy>
+
+        <!-- Note that this is tricky because it bootstraps xmlbeans on itself. -->
+        <!-- The basic strategy is to rely on the oldxbeans.jar checked into lib -->
+
+        <path id="oldxbean">
+            <pathelement location="lib/oldxbean.jar"/>
+        </path>
+
+        <schemaCompProd classpathref="oldxbean" dest="build/bootstrap"/>
+
+        <javac destdir="build/classes" debug="true" debuglevel="lines,vars,source" includeantruntime="true">
+            <src refid="sources"/>
+            <src path="build/bootstrap/generated-sources"/>
+            <classpath>
+                <path refid="oldxbean"/>
+                <path refid="saxon"/>
+            </classpath>
+        </javac>
+
+        <!-- now generate new xmlbeans re-/sources and remove the traces of the oldxbean generated re-/sources -->
+        <path id="oldschemas">
+            <pathelement location="build/classes"/>
+            <pathelement location="build/bootstrap/generated-resources"/>
+            <dirset dir="resources" includes="*"/>
+        </path>
+
+        <schemaCompProd classpathref="oldschemas" dest="build"/>
+
+        <!-- delete old schema classes -->
+        <delete dir="build/classes/org/apache/xmlbeans/impl/xb"/>
+    </target>
+
+    <target name="compile" depends="process-resources" description="Compile sources and resources">
+        <!-- delete old schema classes -->
+        <delete dir="build/classes/org/apache/xmlbeans/impl/xb"/>
+
+        <javac destdir="build/classes" debug="true" debuglevel="lines,vars,source" includeantruntime="true" classpathref="saxon">
+            <src refid="sources"/>
+        </javac>
+    </target>
+
+    <!-- Run this target before you open the project in an IDE. -->
+    <target name="process-test-resources" depends="compile"
+        description="Generate test sources and resources based on schema files.">
+        <mkdir dir="build/tmp"/>
+        <mkdir dir="build/test-classes"/>
+        <mkdir dir="build/test-results"/>
+
+        <!-- extensions currently deactivated - it generates duplicated methods -->
+        <!--
+        <pathconvert property="extensions-dir" pathsep=" ">
+            <path>
+                <dirset dir="test/src/xmlobject/extensions/" includes="interfaceFeature/*,prePostFeature/readOnlyBean"/>
+                <dirset dir="test/cases/xbean/extensions/" includes="interfaceFeature/*,prePostFeature/readOnlyBean"/>
+            </path>
+        </pathconvert>
+        <schemaComp schemaName="sEXTENSIONS" src="${extensions-dir}" dest="build/test-extensions" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sEXTENSIONS2" src="test/cases/xbean/extensions/prePostFeature/ValueRestriction test/src/xmlobject/extensions/prePostFeature/ValueRestriction" dest="build/test-extensions" classpathref="xmlbeans-test"/>
+        -->
+
+        <untar src="test/cases/xbean/tranxml.tar.bz2" dest="build/test-tranxml/schemas" compression="bzip2" overwrite="false">
+            <patternset>
+                <include name="tranxml/Version4.0/schemas/StandAlone/CarLocationMessage_40_LX.xsd"/>
+            </patternset>
+            <mapper type="flatten"/>
+        </untar>
+        <schemaComp schemaName="sTRAN" src="build/test-tranxml/schemas" dest="build/test-tranxml" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sTOOLS" src="test/tools/lib/xsl" dest="build/test-tools" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sXMLCURSOR" src="test/cases/xbean/xmlcursor" dest="build/test-xmlcursor" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sDOM" src="test/cases/xbean/dom" dest="build/test-dom" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sSCOMP" src="test/cases/xbean/scomp" dest="build/test-scomp" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sSIMPLE" src="test/cases/xbean/simple" dest="build/test-simple" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sVALIDATE" src="test/cases/xbean/ValidatingStream" dest="build/test-validate" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sUSERTYPE" src="test/cases/xbean/usertype" dest="build/test-usertype" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sLAX" src="test/cases/xbean/compile/scomp/detailed" dest="build/test-lax" classpathref="xmlbeans-test"/>
+
+        <pathconvert property="xmlobjects" pathsep=" ">
+            <path>
+                <fileset dir="test/cases/xbean/xmlobject">
+                    <include name="CR192525.xsd"/>
+                    <include name="defaults.xsd"/>
+                    <include name="easypo.xsd*"/>
+                    <include name="enumtest.xsd*"/>
+                    <include name="inttest.xsd"/>
+                    <include name="listandunion.xsd"/>
+                    <include name="nameworld.xsd"/>
+                    <include name="numerals.xsd"/>
+                    <include name="redefine2.xsd"/>
+                    <include name="SelectAttribute.xsd"/>
+                    <include name="SelectChildren.xsd"/>
+                    <include name="selectChldAttTest.xsd"/>
+                    <include name="soap-envelope.xsd"/>
+                    <include name="soapfaults.xsd"/>
+                    <include name="substgroup.xsd"/>
+                    <include name="substgroup2.xsd"/>
+                    <include name="Test.xsd"/>
+                    <include name="Test36510.xsd"/>
+                    <include name="Test40907.xsd"/>
+                    <include name="version3.xsd"/>
+                </fileset>
+            </path>
+        </pathconvert>
+        <schemaComp schemaName="sXMLOBJECT" src="${xmlobjects}" dest="build/test-xmlobject" classpathref="xmlbeans-test"/>
+
+        <pathconvert property="miscs" pathsep=" ">
+            <path>
+                <fileset dir="test/cases/xbean/misc/jira">
+                    <include name="xmlbeans_33b.xsd"/>
+                    <include name="xmlbeans_46.xsd"/>
+                    <include name="xmlbeans_48.xsd"/>
+                    <include name="xmlbeans_64.xsd"/>
+                    <include name="xmlbeans_68.xsd"/>
+                    <include name="xmlbeans_71.xsd"/>
+                    <include name="xmlbeans_98.xsd"/>
+                    <include name="xmlbeans_99*.xsd"/>
+                    <include name="xmlbeans_105.xsd"/>
+                    <include name="xmlbeans_175.xsd"/>
+                    <include name="xmlbeans_177*.xsd"/>
+                    <include name="xmlbeans_208.xsd"/>
+                    <include name="xmlbeans_228.xsd"/>
+                    <include name="xmlbeans_307_maxallowedenum.xsd"/>
+                    <include name="xmlbeans_307_morethanallowedenum.xsd"/>
+                </fileset>
+                <pathelement location="test/cases/xbean/xmltokensource"/>
+            </path>
+        </pathconvert>
+        <schemaComp schemaName="sMISC" src="${miscs}" dest="build/test-misc" classpathref="xmlbeans-test"/>
+
+        <!-- don't include in normal test classpath -->
+        <schemaComp schemaName="sSYSCACHE" src="test/cases/xbean/misc/syscachetest1.xsd" dest="build/test-syscache/1" classpathref="xmlbeans-test"/>
+        <schemaComp schemaName="sSYSCACHE" src="test/cases/xbean/misc/syscachetest2.xsd" dest="build/test-syscache/2" classpathref="xmlbeans-test"/>
+    </target>
+
+
+
+    <target name="test-compile" depends="process-test-resources" description="Compile test sources and resources">
+        <javac destdir="build/test-classes" debug="true" debuglevel="lines,vars,source" includeantruntime="true" classpathref="xmlbeans-test">
+            <src path="test/src"/>
+            <src path="test/tools/src"/>
+            <src>
+                <dirset dir="build" includes="test-*/generated-sources"/>
+            </src>
+            <exclude name="**/extensions/**"/>
+            <exclude name="**/drt/**"/>
+        </javac>
+
+        <mkdir dir="build/test-syscache/1/classes"/>
+        <javac destdir="build/test-syscache/1/classes" debug="true" debuglevel="lines,vars,source" includeantruntime="true" classpathref="xmlbeans-test"
+               srcdir="build/test-syscache/1/generated-sources"/>
+        <mkdir dir="build/test-syscache/2/classes"/>
+        <javac destdir="build/test-syscache/2/classes" debug="true" debuglevel="lines,vars,source" includeantruntime="true" classpathref="xmlbeans-test"
+               srcdir="build/test-syscache/2/generated-sources"/>
+    </target>
+
+    <target name="test" depends="test-compile" description="Run the tests">
+        <junit printsummary="yes" showoutput="no" haltonerror="true" haltonfailure="true">
+            <classpath refid="xmlbeans-test"/>
+            <classpath>
+                <pathelement location="test/cases"/>
+                <pathelement location="build/test-classes"/>
+                <dirset dir="build" includes="test-*/generated-resources"/>
+            </classpath>
+
+            <formatter type="plain"/>
+            <formatter type="xml"/>
+
+            <jvmarg value="-ea"/>
+            <jvmarg value="-Xmx256m"/>
+            <jvmarg value="-Djava.io.tmpdir=${basedir}/build/tmp"/>
+
+            <!-- For tests that need to access case files directly -->
+            <sysproperty key="cases.location" path="${basedir}/test/cases"/>
+            <sysproperty key="xbean.rootdir" path="${basedir}"/>
+
+            <batchtest fork="yes" todir="build/test-results">
+                <fileset dir="test/src">
+                    <include name="**/*Tests.java"/>
+                    <include name="**/*Test.java"/>
+                    <exclude name="**/extensions/**"/>
+                    <exclude name="**/drt/**"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="javadocs" description="Build the javadocs.">
+        <property name="javadocs.dir" value="build/javadocs"/>
+        <delete dir="${javadocs.dir}"/>
+        <mkdir dir="${javadocs.dir}"/>
+
+        <javadoc sourcepathref="sources"
+                 destdir="${javadocs.dir}"
+                 windowtitle="XMLBeans ${version.base} Documentation">
+            <classpath>
+                <path refid="xmlbeans-test"/>
+                <pathelement location="${ENV.ANT_HOME}/lib/ant.jar"/>
+            </classpath>
+            <excludepackage name="repackage.*"/>
+            <excludepackage name="org.apache.xmlbeans.impl.xb.*"/>
+            <excludepackage name="org.apache.xmlbeans.impl.jam.*"/>
+            <link href="http://xmlbeans.apache.org/${version.base}/docs/reference/index.html"/>
+            <link href="http://docs.oracle.com/javase/6/docs/api/"/>
+            <link href="http://docs.oracle.com/javaee/6/api/"/>
+            <link href="http://xml.apache.org/xerces-j/apiDocs/"/>
+            <link href="http://ant.apache.org/manual-1.9.x/api/"/>
+        </javadoc>
+    </target>
+
+    <target name="package" depends="compile,javadocs" description="Builds our jars in the build directory">
+        <jar jarfile="build/xmlbeans-${version.base}.jar" update="false" index="true">
+            <fileset dir="build/classes"/>
+            <fileset dir="." includes="LICENSE.txt,NOTICE.txt"/>
+            <fileset dir="build/generated-resources"/>
+            <mappedresources>
+                <fileset dir="resources"/>
+                <cutdirsmapper dirs="1"/>
+            </mappedresources>
+            <manifest>
+                <section name="org/apache/xmlbeans/">
+                    <attribute name="Comment" value="Apache XmlBeans version ${version.base}"/>
+                    <attribute name="Implementation-Title" value="org.apache.xmlbeans"/>
+                    <attribute name="Implementation-Version" value="${version.base}"/>
+                    <attribute name="Implementation-Vendor" value="Apache Software Foundation"/>
+                    <attribute name="Implementation-URL" value="http://xmlbeans.apache.org/"/>
+                </section>
+            </manifest>
+        </jar>
+
+        <jar jarfile="build/xmlbeans-${version.base}-javadoc.jar" update="false" index="false">
+            <fileset dir="." includes="LICENSE.txt,NOTICE.txt,docs/**"/>
+            <fileset dir="build/javadocs"/>
+            <manifest>
+                <section name="org/apache/xmlbeans/">
+                    <attribute name="Comment" value="Apache XmlBeans version ${version.base} - Javadocs"/>
+                    <attribute name="Implementation-Title" value="org.apache.xmlbeans"/>
+                    <attribute name="Implementation-Version" value="${version.base}"/>
+                    <attribute name="Implementation-Vendor" value="Apache Software Foundation"/>
+                    <attribute name="Implementation-URL" value="http://xmlbeans.apache.org/"/>
+                </section>
+            </manifest>
+        </jar>
+
+        <jar jarfile="build/xmlbeans-${version.base}-sources.jar" update="false" index="false">
+            <fileset dir="." includes="LICENSE.txt,NOTICE.txt"/>
+            <mappedresources>
+                <fileset dir="src" excludes="toolschema/**,shell/**"/>
+                <cutdirsmapper dirs="1"/>
+            </mappedresources>
+            <zipfileset dir="src/toolschema" prefix="schema"/>
+            <mappedresources>
+                <fileset dir="build" includes="generated-sources/**,generated-resources/**"/>
+                <cutdirsmapper dirs="1"/>
+            </mappedresources>
+
+            <manifest>
+                <section name="org/apache/xmlbeans/">
+                    <attribute name="Comment" value="Apache XmlBeans version ${version.base} - Sources"/>
+                    <attribute name="Implementation-Title" value="org.apache.xmlbeans"/>
+                    <attribute name="Implementation-Version" value="${version.base}"/>
+                    <attribute name="Implementation-Vendor" value="Apache Software Foundation"/>
+                    <attribute name="Implementation-URL" value="http://xmlbeans.apache.org/"/>
+                </section>
+            </manifest>
+        </jar>
+
+        <tstamp>
+            <format property="tstamp.dist" pattern="yyyyMMdd"/>
+        </tstamp>
+
+        <property name="prefix" value="xmlbeans-${version.base}"/>
+
+        <zip destfile="build/xmlbeans-src-${version.base}-${tstamp.dist}.zip" update="false">
+            <zipfileset dir="." excludes="build/**,tmp/**,.idea/**,bin/**,lib/**,compile-lib/**,/src/shell/**,.settings/**,.project,build.javacheck.xml,release-guide.txt" prefix="${prefix}"/>
+        	<zipfileset dir="src/shell" prefix="${prefix}/bin" />
+            <zipfileset dir="build/javadocs" prefix="${prefix}/javadocs" />
+        </zip>
+        <tar destfile="build/xmlbeans-src-${version.base}-${tstamp.dist}.tgz" compression="gzip">
+            <tarfileset dir="." excludes="build/**,tmp/**,.idea/**,bin/**,lib/**,compile-lib/**,/src/shell/**,.settings/**,.project,build.javacheck.xml,release-guide.txt" prefix="${prefix}"/>
+        	<tarfileset dir="src/shell" prefix="${prefix}/bin" />
+            <tarfileset dir="build/javadocs" prefix="${prefix}/javadocs" />
+        </tar>
+
+        <zip destfile="build/xmlbeans-bin-${version.base}-${tstamp.dist}.zip" update="false">
+            <zipfileset dir="." includes="LICENSE.txt,NOTICE.txt,docs/**" prefix="${prefix}"/>
+            <zipfileset dir="samples" includes="Any/**,DateTime/**,MixedContent/**,OrderMatters/**,SchemaEnum/**,Validation/**,XQueryXPath/**,XsdConfig/**" prefix="${prefix}/samples"/>
+            <zipfileset dir="src/shell" prefix="${prefix}/bin"/>
+            <zipfileset dir="compile-lib" includes="resolver.jar" prefix="${prefix}/lib"/>
+            <zipfileset dir="xkit" prefix="${prefix}"/>
+            <zipfileset dir="src/xsdschema/schema" includes="*.xsd" prefix="${prefix}/schemas/s4s"/>
+            <zipfileset dir="src/xmlschema/schema" includes="*.xsd" prefix="${prefix}/schemas/s4s"/>
+            <zipfileset dir="test/cases/xbean/xmlobject" includes="numerals.xsd,easypo.xsd*,nameworld.xsd" prefix="${prefix}/schemas"/>
+            <zipfileset dir="build" prefix="${prefix}/lib">
+                <include name="xmlbeans-${version.base}.jar"/>
+                <include name="xmlbeans-${version.base}-javadoc.jar"/>
+                <include name="xmlbeans-${version.base}-sources.jar"/>
+            </zipfileset>
+        </zip>
+        <tar destfile="build/xmlbeans-bin-${version.base}-${tstamp.dist}.tgz" compression="gzip">
+            <tarfileset dir="." includes="LICENSE.txt,NOTICE.txt,docs/**" prefix="${prefix}"/>
+            <tarfileset dir="samples" includes="Any/**,DateTime/**,MixedContent/**,OrderMatters/**,SchemaEnum/**,Validation/**,XQueryXPath/**,XsdConfig/**" prefix="${prefix}/samples"/>
+            <tarfileset dir="src/shell" prefix="${prefix}/bin"/>
+            <tarfileset dir="compile-lib" includes="resolver.jar" prefix="${prefix}/lib"/>
+            <tarfileset dir="xkit" prefix="${prefix}"/>
+            <tarfileset dir="src/xsdschema/schema" includes="*.xsd" prefix="${prefix}/schemas/s4s"/>
+            <tarfileset dir="src/xmlschema/schema" includes="*.xsd" prefix="${prefix}/schemas/s4s"/>
+            <tarfileset dir="test/cases/xbean/xmlobject" includes="numerals.xsd,easypo.xsd*,nameworld.xsd" prefix="${prefix}/schemas"/>
+            <tarfileset dir="build" prefix="${prefix}/lib">
+                <include name="xmlbeans-${version.base}.jar"/>
+                <include name="xmlbeans-${version.base}-javadoc.jar"/>
+                <include name="xmlbeans-${version.base}-sources.jar"/>
+            </tarfileset>
+        </tar>
+
+    </target>
+
+    <!-- spot any files which are missing the correct license headers -->
+    <target name="rat-check" description="Runs the Apache Creadur Rat check against the source code">
+        <mkdir dir="${rat.reportdir}" />
+        <downloadfile src="${rat.url}" dest="${rat.jar}"/>
+
+        <typedef resource="org/apache/rat/anttasks/antlib.xml"
+                 uri="antlib:org.apache.rat.anttasks"
+                 classpath="${rat.jar}" />
+        <rat:report xmlns:rat="antlib:org.apache.rat.anttasks" reportFile="${rat.report}">
+            <fileset dir="src/">
+                <exclude name="**/*.iml" />
+                <exclude name="**/XML.xsd"/>
+                <exclude name="**/XMLSchema.xsd"/>
+            </fileset>
+            <fileset dir="resources">
+                <exclude name="**/META-INF/services/**"/>
+            </fileset>
+        </rat:report>
+
+        <!-- remove clutter to compact build output -->
+        <!-- replaceregexp doesn't work within loadfile ... -->
+        <replaceregexp file="${rat.report}" match="\s+Printing headers for files without AL header.++" replace="" flags="s"/>
+
+        <loadfile property="rat.reportcontent" srcFile="${rat.report}">
+            <filterchain>
+                <linecontainsregexp negate="true">
+                    <regexp pattern="^\s+(AL|B|N)\s+"/>
+                </linecontainsregexp>
+            </filterchain>
+        </loadfile>
+        <echo>${rat.reportcontent}</echo>
+
+        <!-- fail the build if at least one note is in the report -->
+        <fail><condition><matches pattern="[1-9][0-9]* Unknown Licens" string="${rat.reportcontent}"/></condition></fail>
+    </target>
+
+    <!-- spot any cases where we've accidently used methods we shouldn't -->
+    <!-- See https://github.com/policeman-tools/forbidden-apis for details of the checks that this can do -->
+    <target name="forbidden-apis-check"
+        description="Runs the Forbiddens APIs checker against the source code">
+        <downloadfile src="${forbidden.url}" dest="${forbidden.jar}"/>
+
+        <taskdef name="forbiddenapis"
+                 classname="de.thetaphi.forbiddenapis.ant.AntTask"
+                 classpath="${forbidden.jar}"/>
+
+        <path id="forbiddenapis.classpath">
+            <path refid="xmlbeans-test"/>
+            <path path="${ENV.ANT_HOME}/lib/ant.jar"/>
+        </path>
+
+
+        <!-- first check rules that apply to all the source code -->
+        <forbiddenapis
+                suppressAnnotation="org.apache.poi.util.SuppressForbidden"
+                targetVersion="${ant.build.javac.target}"
+                classpathref="forbiddenapis.classpath"
+        >
+            <bundledsignatures name="jdk-unsafe"/>
+            <bundledsignatures name="jdk-deprecated"/>
+            <bundledsignatures name="jdk-internal"/>
+            <bundledsignatures name="jdk-non-portable"/>
+            <bundledsignatures name="jdk-reflection"/>
+
+            <!-- sources -->
+            <fileset dir="build/classes"/>
+        </forbiddenapis>
+
+    </target>
+
+    <!-- forbidden-apis-check is currently not included as it is still failing... -->
+    <target name="jenkins"
+            depends="test,package,rat-check"
+            description="Combines all targets that are executed in CI runs"/>
+</project>

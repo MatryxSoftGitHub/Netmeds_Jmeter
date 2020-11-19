@@ -1,0 +1,1543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Reporters" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">true</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="OutputPassCSVFile" elementType="Argument">
+            <stringProp name="Argument.name">OutputPassCSVFile</stringProp>
+            <stringProp name="Argument.value">C:\Users\Dileep\Desktop\HTMLReports\outputPass.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="OutputFailCSVFile" elementType="Argument">
+            <stringProp name="Argument.name">OutputFailCSVFile</stringProp>
+            <stringProp name="Argument.value">C:\Users\Dileep\Desktop\HTMLReports\outputFail.csv</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group_NetmedsDemo" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor1" enabled="false">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+import org.apache.commons.lang3.SystemUtils;
+
+println &apos;Pre---------Processor&apos;
+String FilePathHTML = &apos;D:\\JmeterProject\\output.html&apos;
+
+//String osv = SystemUtils.OS_VERSION
+def CurrentTime = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss.SSS aaa&quot;).format(new Date())
+//println(TDNow)
+
+def os = SystemUtils.OS_NAME
+def UserName = SystemUtils.USER_NAME
+def ComputerName =SystemUtils.hostName
+def _threadGroupName = ctx.getThreadGroup().getName();
+//println(_threadGroupName)
+
+InetAddress myIP=InetAddress.getLocalHost();
+//println(&quot;My IP Address is:&quot;);
+//println(myIP.getHostAddress());
+def hostnameCanonical = myIP.getCanonicalHostName();
+//println(hostnameCanonical);
+
+
+File reportFile = new File(FilePathHTML)
+if(reportFile.exists()){
+	reportFile.delete()}
+if(!reportFile.exists()) {
+	reportFile.createNewFile()
+	reportFile &lt;&lt; &quot;&lt;html&gt;&lt;head&gt;&lt;style type=text/css&gt;&lt;/style&gt;&lt;/head&gt;&lt;table align=center border=0 cellpadding=4 cellspacing=0 style=border:0px solid width=100%&gt;&lt;tr&gt;&lt;td&gt;&lt;img src=D:\\JmeterProject\\Logo1PNG.png align=left style=width:90px;height:75px;/&gt;&lt;/td&gt;&lt;td&gt;&lt;h1&gt;&lt;font color=darkgreen face=Verdana&gt;&lt;a&gt;Matryxsoft Test Reports&lt;/a&gt;&lt;/font&gt;&lt;/h1&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details name --&gt;&lt;table border=1 width=40% cellpadding=4 cellspacing=1&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Thread Group Name&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$_threadGroupName&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Host ID&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$hostnameCanonical&lt;/td&gt;&lt;/tr&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Compuer&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$ComputerName&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Windows&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$os&lt;/td&gt;&lt;/tr&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Username&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$UserName&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Execution Started&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$CurrentTime&lt;/td&gt;&lt;/tr&gt;&quot;
+}
+
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler_Append1" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+String FilePathCSV= &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.csv&apos;
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+
+def CurrentTime = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss.SSS aaa&quot;).format(new Date())
+
+// read all the content of the file into a single string
+//File fh1 = new File(FilePathCSV)
+//text = fh1.getText(&apos;UTF-8&apos;)
+//println(text)
+
+File reportFile = new File(FilePathHTML)
+reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Execution Finished&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$CurrentTime&lt;/td&gt;&lt;/tr&gt;&quot;
+
+File fh3 = new File(FilePathCSV)
+def rows = fh3.readLines()
+for (int i=0;i&lt;=rows.size();i++) {
+	//println i
+	if(i==rows.size()-1){
+		//println(lines[i])
+		if (rows[i].contains(&quot;TRUE&quot;)){
+			println &apos;PASS&apos;
+			reportFile &lt;&lt; &quot;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:green; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;PASS&lt;/td&gt;&lt;!--td style=color:red; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;FAIL&lt;/td&gt;&lt;td style=color:orange; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;Not Executed&lt;/td--&gt;&lt;/tr&gt;&quot;
+		}
+		else if (rows[i].contains(&quot;FALSE&quot;)){
+			//println &apos;FAILED&apos;
+			reportFile &lt;&lt; &quot;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:red; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;FAIL&lt;/td&gt;&lt;/tr&gt;&quot;
+		}
+		else{
+			//println &apos;Not Executed&apos;
+			reportFile &lt;&lt; &quot;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:orange; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;Not Executed&lt;/td&gt;&lt;/tr&gt;&quot;
+			
+		}
+		}}
+
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details --&gt;&lt;table border=1px solid black border=0 width=100% cellpadding=4 cellspacing=1 style=border:1px solid;&gt;&lt;tr bgcolor=darkgreen&gt;&lt;th style=color:white&gt;Time Stamp&lt;/th&gt;&lt;th style=color:white&gt;Elapsed&lt;/th&gt;&lt;th style=color:white&gt;Sampler Name&lt;/th&gt;&lt;th style=color:white&gt;Response Code&lt;/th&gt;&lt;th style=color:white&gt;Response Message&lt;/th&gt;&lt;th style=color:white&gt;Thread Name&lt;/th&gt;&lt;th style=color:white&gt;Data Type&lt;/th&gt;&lt;th style=color:white&gt;Success&lt;/th&gt;&lt;th style=color:white&gt;Failure Message&lt;/th&gt;&lt;th style=color:white&gt;Bytes&lt;/th&gt;&lt;th style=color:white&gt;Sent Bytes&lt;/th&gt;&lt;th style=color:white&gt;grp Threads&lt;/th&gt;&lt;th style=color:white&gt;All Threads&lt;/th&gt;&lt;th style=color:white&gt;URL&lt;/th&gt;&lt;th style=color:white&gt;Latency&lt;/th&gt;&lt;th style=color:white&gt;Idle Time&lt;/th&gt;&lt;th style=color:white&gt;Connect&lt;/th&gt;&lt;/tr&gt;&quot;
+ 
+// read all the lines into a list, each line is an element in the list
+File fh2 = new File(FilePathCSV)
+def lines = fh2.readLines()
+//println(lines)
+for (int i=0;i&lt;=lines.size();i++) {
+	if((i&gt;0) &amp;&amp; (i&lt;lines.size()-1)){
+		//println(lines[i])
+		//log.info(lines[i])
+		String[] Lists;
+		Lists= lines[i].split(&apos;,&apos;)
+		//println(Lists)
+		//log.info(Lists)
+		for(int j=0;j&lt;=Lists.size();j++){
+			//println(Lists[j])
+			
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+Lists[0]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[1]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[2]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[3]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[4]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[5]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[6]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[7]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[8]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[9]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[10]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[11]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[12]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[13]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[14]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[15]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[16]+ &quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+			break
+			//println(&apos;hi&apos;)
+			//log.info(Lists[j])
+		}		
+	}		
+    // ...
+}
+
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+
+
+
+
+ </stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree1" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor1" enabled="false">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+println &apos;Post processor &apos;
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+
+File reportFile = new File(FilePathHTML)
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223PostProcessor>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 SamplerRename" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+String TDNow = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss aaa&quot;).format(new Date())
+println(TDNow)
+
+//
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+//
+File reportFile = new File(FilePathHTML)
+if(reportFile.exists()) {
+	println(&apos;go&apos;)
+	reportFile.renameTo(new File((&apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output9999999.html&apos;))
+	println(&apos;bye&apos;)
+	
+}
+
+
+</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler_Rename2" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+String TDNow = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss aaa&quot;).format(new Date())
+println(TDNow)
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+
+try {
+
+String oldfile = &quot;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&quot;;
+File file = new File(oldfile);
+File newfile = new File(&quot;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output$TDNow.html&quot;);
+
+boolean success = file.renameTo(newfile);
+if (success)
+log.info(&quot;file renamed successfully&quot;);             
+}
+
+catch (Throwable e) {
+    log.error(&quot;Error in Beanshell&quot;,e);
+}</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler_Append2" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+//String FilePathCSV= &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.csv&apos;
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+
+File reportFile = new File(FilePathHTML)
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;!-- Display test case details --&gt;&lt;table border=1px solid black border=0 width=100% cellpadding=4 cellspacing=1 style=border:1px solid;&gt;&lt;tr bgcolor=darkgreen&gt;&lt;th style=color:white&gt;Time Stamp&lt;/th&gt;&lt;th style=color:white&gt;Elapsed&lt;/th&gt;&lt;th style=color:white&gt;Sampler Name&lt;/th&gt;&lt;th style=color:white&gt;Response Code&lt;/th&gt;&lt;th style=color:white&gt;Response Message&lt;/th&gt;&lt;th style=color:white&gt;Thread Name&lt;/th&gt;&lt;th style=color:white&gt;Data Type&lt;/th&gt;&lt;th style=color:white&gt;Success&lt;/th&gt;&lt;th style=color:white&gt;Failure Message&lt;/th&gt;&lt;th style=color:white&gt;Bytes&lt;/th&gt;&lt;th style=color:white&gt;Sent Bytes&lt;/th&gt;&lt;th style=color:white&gt;grp Threads&lt;/th&gt;&lt;th style=color:white&gt;All Threads&lt;/th&gt;&lt;th style=color:white&gt;URL&lt;/th&gt;&lt;th style=color:white&gt;Latency&lt;/th&gt;&lt;th style=color:white&gt;Idle Time&lt;/th&gt;&lt;th style=color:white&gt;Connect&lt;/th&gt;&lt;/tr&gt;&quot;
+</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+println &apos;Hi&apos;
+
+String FilePathCSV= &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.csv&apos;
+
+File fh2 = new File(FilePathCSV)
+def lines = fh2.readLines()
+//println(lines)
+int totalRows = lines.size()
+//println(totalRows)
+for (int i=0;i&lt;=lines.size();i++) {
+	//println i
+	if(i==totalRows-1){
+		//println(lines[i])
+		if (lines[i].contains(&quot;TRUE&quot;)){
+			println &apos;PASS&apos;
+		}
+		else{
+			println &apos;FAILED&apos;
+		}}}</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor_FirstAppend2" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+import org.apache.commons.lang3.SystemUtils;
+
+println &apos;1&apos;
+//println &apos;Pre---------Processor&apos;
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+//String osv = SystemUtils.OS_VERSION
+def CurrentTime = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss aaa&quot;).format(new Date())
+//println(TDNow)
+
+def os = SystemUtils.OS_NAME
+def UserName = SystemUtils.USER_NAME
+def ComputerName =SystemUtils.hostName
+def _threadGroupName = ctx.getThreadGroup().getName();
+//println(_threadGroupName)
+
+InetAddress myIP=InetAddress.getLocalHost();
+//println(&quot;My IP Address is:&quot;);
+//println(myIP.getHostAddress());
+def hostnameCanonical = myIP.getCanonicalHostName();
+//println(hostnameCanonical);
+
+
+File reportFile = new File(FilePathHTML)
+if(reportFile.exists()){
+	reportFile.delete()}
+if(!reportFile.exists()) {
+	reportFile.createNewFile()
+	reportFile &lt;&lt; &quot;&lt;html&gt;&lt;head&gt;&lt;style type=text/css&gt;&lt;/style&gt;&lt;/head&gt;&lt;table align=center border=0 cellpadding=4 cellspacing=0 style=border:0px solid width=100%&gt;&lt;tr&gt;&lt;td&gt;&lt;img src=C:\\Users\\Dileep\\Desktop\\HTMLReports\\Logo1PNG.png align=left style=width:90px;height:75px;/&gt;&lt;/td&gt;&lt;td&gt;&lt;h1&gt;&lt;font color=darkgreen face=Verdana&gt;&lt;a&gt;Matryxsoft Test Reports&lt;/a&gt;&lt;/font&gt;&lt;/h1&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details name --&gt;&lt;table border=1 width=40% cellpadding=4 cellspacing=1&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Thread Group Name&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$_threadGroupName&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:green; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;PASS&lt;/td&gt;&lt;!--td style=color:red; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;FAIL&lt;/td&gt;&lt;td style=color:orange; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;Not Executed&lt;/td--&gt;&lt;/tr&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Host ID&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$hostnameCanonical&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Compuer&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$ComputerName&lt;/td&gt;&lt;/tr&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Windows&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$os&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Username&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$UserName&lt;/td&gt;&lt;/tr&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Execution started&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$CurrentTime&lt;/td&gt;&lt;/tr&gt;&quot;
+</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+String FilePathCSV= &apos;D:\\JmeterProject\\output.csv&apos;
+
+String FilePathHTML = &apos;D:\\JmeterProject\\output.html&apos;
+
+def CurrentTime = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss.SSS aaa&quot;).format(new Date())
+
+// read all the content of the file into a single string
+//File fh1 = new File(FilePathCSV)
+//text = fh1.getText(&apos;UTF-8&apos;)
+//println(text)
+
+File reportFile = new File(FilePathHTML)
+reportFile &lt;&lt; &quot;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Execution Finished&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$CurrentTime&lt;/td&gt;&lt;/tr&gt;&quot;
+
+File fh3 = new File(FilePathCSV)
+def rows = fh3.readLines()
+for (int i=0;i&lt;=rows.size();i++) {
+	//println i
+	if(i==rows.size()-1){
+		//println(lines[i])
+		if (rows[i].contains(&quot;TRUE&quot;)){
+			println &apos;PASS&apos;
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:green; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;PASS&lt;/td&gt;&lt;!--td style=color:red; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;FAIL&lt;/td&gt;&lt;td style=color:orange; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;Not Executed&lt;/td--&gt;&lt;/tr&gt;&quot;
+		}
+		else if (rows[i].contains(&quot;FALSE&quot;)){
+			//println &apos;FAILED&apos;
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:red; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;FAIL&lt;/td&gt;&lt;/tr&gt;&quot;
+		}
+		else{
+			//println &apos;Not Executed&apos;
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:orange; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;Not Executed&lt;/td&gt;&lt;/tr&gt;&quot;
+			
+		}
+		}}
+
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details --&gt;&lt;table border=1px solid black border=0 width=100% cellpadding=4 cellspacing=1 style=border:1px solid;&gt;&lt;tr bgcolor=darkgreen&gt;&lt;th style=color:white&gt;Time Stamp&lt;/th&gt;&lt;th style=color:white&gt;Time Elapsed(miliSeconds)&lt;/th&gt;&lt;th style=color:white&gt;Sampler Name&lt;/th&gt;&lt;th style=color:white&gt;Response Code&lt;/th&gt;&lt;th style=color:white&gt;Response Message&lt;/th&gt;&lt;th style=color:white&gt;Success&lt;/th&gt;&lt;th style=color:white&gt;Failure Message&lt;/th&gt;&lt;th style=color:white&gt;URL&lt;/th&gt;&lt;/tr&gt;&quot;
+ 
+// read all the lines into a list, each line is an element in the list
+File fh2 = new File(FilePathCSV)
+def lines = fh2.readLines()
+//println(lines)
+for (int i=0;i&lt;=lines.size();i++) {
+	if((i&gt;0) &amp;&amp; (i&lt;lines.size()-1)){
+		//println(lines[i])
+		//log.info(lines[i])
+		String[] Lists;
+		Lists= lines[i].split(&apos;,&apos;)
+		//println(Lists)
+		//log.info(Lists)
+		for(int j=0;j&lt;=Lists.size();j++){
+			//println(Lists[j])
+			
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+Lists[0]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[1]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[2]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[3]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[4]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[7]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[8]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[13]+ &quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+			break
+			//println(&apos;hi&apos;)
+			//log.info(Lists[j])
+		}		
+	}		
+    // ...
+}
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+
+
+//Summary block
+
+reportFile &lt;&lt; &quot;&lt;h1&gt;&lt;/h1&gt;&lt;h2&gt;Summary of Report&lt;/h2&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details --&gt;&lt;table border=1px solid black border=0 width=100% cellpadding=4 cellspacing=1 style=border:1px solid;&gt;&lt;tr bgcolor=darkgreen&gt;&lt;th style=color:white&gt;Time Stamp&lt;/th&gt;&lt;th style=color:white&gt;Time Elapsed(miliSeconds)&lt;/th&gt;&lt;th style=color:white&gt;Sampler Name&lt;/th&gt;&lt;th style=color:white&gt;Response Code&lt;/th&gt;&lt;th style=color:white&gt;Response Message&lt;/th&gt;&lt;th style=color:white&gt;Success&lt;/th&gt;&lt;th style=color:white&gt;Failure Message&lt;/th&gt;&lt;th style=color:white&gt;URL&lt;/th&gt;&lt;/tr&gt;&quot;
+
+// read all the lines into a list, each line is an element in the list
+File fh23 = new File(FilePathCSV)
+def lines1 = fh23.readLines()
+//println(lines)
+for (int i=0;i&lt;=lines1.size();i++) {
+	if(i==lines1.size()-1){
+		//println(lines[i])
+		//log.info(lines[i])
+		String[] Lists;
+		Lists= lines1[i].split(&apos;,&apos;)
+		//println(Lists)
+		//log.info(Lists)
+		for(int j=0;j&lt;=Lists.size();j++){
+			//println(Lists[j])
+			
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+Lists[0]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[1]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[2]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[3]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[4]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[7]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[8]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[13]+ &quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+			break
+			//println(&apos;hi&apos;)
+			//log.info(Lists[j])
+		}		
+	}		
+    // ...
+}
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+
+
+
+
+ </stringProp>
+        </JSR223PostProcessor>
+        <hashTree/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Test_NetMeds" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetUserNameDetails" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">mst/rest/v1/id/details/${sUserName}</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">To Fetch the User Name from CSV file</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="FetchRecordFromExcel_Sampler" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">import org.apache.poi.ss.usermodel.*
+import org.apache.poi.hssf.usermodel.*
+import org.apache.poi.xssf.usermodel.*
+import org.apache.poi.ss.util.*
+import org.codehaus.groovy.scriptom.ActiveXObject
+import java.io.*;
+import jxl.*
+import jxl.write.*
+
+def startTime = System.currentTimeMillis(); //return current time in milliseconds
+SampleResult.setStartTime(startTime); // set StartTime
+log.info(&quot;Start Time should be: &quot; + (new Date(startTime)).toString());
+
+//To Get the &apos;Channel&apos;
+vars.get(&quot;channel&quot;);
+
+//Assighn value to &quot;Channel&quot;
+vars.put(&quot;channel&quot;,&quot;web123&quot;);
+ 
+//Excel Path
+def fs = new FileInputStream (&quot;D:\\Test.xlsx&quot;);
+
+Workbook wb = WorkbookFactory.create(fs);
+def ws = wb.getSheet(&quot;DataDriven&quot;) 	
+def count = ws.getPhysicalNumberOfRows()
+
+//To Get Number of Rows in The given excel sheet 
+log.info(&quot;Number of Rows: &quot; +count)
+
+//To Get Number of Sheets in the given Excel
+ int sheetNum = wb.getNumberOfSheets();
+ log.info(&quot;Number of Sheets: &quot; +sheetNum)
+
+//To Fetch the Row
+Sheet sheet = wb.getSheetAt(0);
+   Row row = sheet.getRow(1);
+
+//Fetching Usanme
+   Cell UserNameCell = row.getCell(0);
+   String sUserName=UserNameCell
+   
+//Fetching Password
+   Cell PasswordCell = row.getCell(1);
+   String sPassowrd=PasswordCell
+   
+ log.info(&quot;UserName From Excel &quot; +sUserName )
+ log.info(&quot;Password From Excel &quot; +sPassowrd )
+
+//Strong UserName and Password Values 
+ vars.put(&quot;FrmExcel_name&quot;, sUserName);
+ vars.put(&quot;FrmExcel_sPwd&quot;, sPassowrd);
+
+
+log.info(&quot;Previous Response URL is: &quot; + ctx.getPreviousResult().getURL()); //To Get the Previous Respose URL
+log.info(&quot;Previous Response Time is: &quot; + ctx.getPreviousResult().getTime());// Previous Response Time
+
+</stringProp>
+            <stringProp name="TestPlan.comments">Fetching Parameter Names and Passing values from Groovy Script</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostUserNameAndPwd" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="passwd" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">passwd</stringProp>
+                  <stringProp name="Argument.value">${FrmExcel_sPwd}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="channel" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">channel</stringProp>
+                  <stringProp name="Argument.value">${channel}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="merge_session" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">merge_session</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="userid" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">userid</stringProp>
+                  <stringProp name="Argument.value">${sUserName}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">mst/rest/v1/session/create/using_userid_n_passwd</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">Passing UserName and Password Dynamically from CSV and Excel_Sampler</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="Content-Type" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="VerifycationSampler" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">log.info(&quot;Current Sampler class is: &quot; + ctx.getCurrentSampler());
+
+String sChannelFromParameter = vars.get(&quot;channel&quot;);//In Use
+String sURLFromParameter = vars.get(&quot;BASE_URL_1&quot;);
+
+log.info(&quot;Channel Type is &quot;+ sChannelFromParameter); 
+String sVerifychannel=&quot;${channel}&quot;
+if(sVerifychannel == sChannelFromParameter )   
+ log.info(&quot;Channel is Web Request Type&quot;);   
+else  
+ log.error(&quot;Channel is Not Web Request Type&quot;);
+
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetDateTime" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">home/wellness/get_deals_date_time</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                </elementProp>
+                <elementProp name="X-Requested-With" elementType="Header">
+                  <stringProp name="Header.name">X-Requested-With</stringProp>
+                  <stringProp name="Header.value">XMLHttpRequest</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetNetMedsTECHmsg" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">netmeds_tech_msg</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcmsblock</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetCategoryConfigFormulaType" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">cat-formula-type</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcategconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetConsultURL" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">consult-url</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetPaymentConfigURL" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">diag-url</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetCoreConfig" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">ehr-enable</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcoreconfig</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value">3517370</stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value">6cbb29f8a757a48e0d563e41f6d3bc31cab863ee1755173555</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Btn_LogOut" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">netmeds_login_banner</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">customer/account/logout</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NetMeds_RedirectHomePage" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="name" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">name</stringProp>
+                  <stringProp name="Argument.value">netmeds_login_banner</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${BASE_URL_1}</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">payment/config/getcmsblock</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="userid" elementType="Header">
+                  <stringProp name="Header.name">userid</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+                <elementProp name="authtoken" elementType="Header">
+                  <stringProp name="Header.name">authtoken</stringProp>
+                  <stringProp name="Header.value"></stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="VerifycationSampler" enabled="false">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">log.info(&quot;Current Sampler class is: &quot; + ctx.getCurrentSampler());
+
+String sChannelFromParameter = vars.get(&quot;name&quot;);
+
+log.info(&quot;The Page is Redirected to  &quot;+ sChannelFromParameter +&quot; Home Page&quot;); 
+String sHomePage=&quot;${name}&quot;
+if(sChannelFromParameter == sHomePage )   
+ log.info(&quot;LogOut Sucessfully and Page is navigated to Home Page&quot;);   
+else  
+ log.error(&quot;Failed to Logout and Page is not redirected to Home Page&quot;);
+
+
+</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="false">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+import groovy.json.JsonSlurper
+
+
+
+	 String collatedReportFileName = &quot;Collated Report V1.0.csv&quot;
+	 String individualReportName = new SimpleDateFormat(&quot;yyyy-MM-dd hh.mm.ss aaa&quot;).format(new Date())
+	 String lastCaseID = &quot; &quot;
+	 String testSuiteName = &quot;Test Suite Name&quot;
+	 String testSuiteExecutionTimeStamp = &quot;&quot;
+	 String resultRow = &quot;&quot;
+	 String resultRowHtml =&quot;&quot;
+	 String htmlFileName=&quot;&quot;
+	 String FolderName=&quot;&quot;
+	String SimplErrMsg=&quot;&quot;
+	//ResponseObject getUsersResponse = new ResponseObject()
+	def jsonSlurper = new JsonSlurper()
+
+	def jsonObject  =	&quot;&quot;
+	def IssueKey=&quot;&quot;
+	 //log.info(&quot;Reoprted File Name: &quot; +collatedReportFileName)
+	 def appendResultToReportFile(String fileName) {
+		//check if report file exists, otherwise create file with title inside.
+		File reportFile = new File(&quot;C:\Jmeter\HtmlReport&quot;, fileName)
+		
+		if (!reportFile.exists()) {
+			reportFile.createNewFile()
+			reportFile &lt;&lt; &quot;DATA_REF_NBR, BP Name, Test Script Name, Test Case Name, Module, Execution Result, Execution Start Time Stamp, Error Message,Reason for Failure\n&quot;
+		}
+		log.info(&quot;Reoprted File Name: &quot; +collatedReportFileName)
+		reportFile &lt;&lt; resultRow
+	}</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+        </hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler_try" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+String FilePathCSV= &apos;D:\\JmeterProject\\output.csv&apos;
+String FilePathHTML = &apos;D:\\JmeterProject\\output.html&apos;
+
+def CurrentTime = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss.SSS aaa&quot;).format(new Date())
+
+// read all the content of the file into a single string
+//File fh1 = new File(FilePathCSV)
+//text = fh1.getText(&apos;UTF-8&apos;)
+//println(text)
+
+File reportFile = new File(FilePathHTML)
+reportFile &lt;&lt; &quot;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Execution Finished&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$CurrentTime&lt;/td&gt;&lt;/tr&gt;&quot;
+
+File fh3 = new File(FilePathCSV)
+def rows = fh3.readLines()
+for (int i=0;i&lt;=rows.size();i++) {
+	//println i
+	if(i==rows.size()-1){
+		//println(lines[i])
+		if (rows[i].contains(&quot;TRUE&quot;)){
+			println &apos;PASS&apos;
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:green; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;PASS&lt;/td&gt;&lt;!--td style=color:red; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;FAIL&lt;/td&gt;&lt;td style=color:orange; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;Not Executed&lt;/td--&gt;&lt;/tr&gt;&quot;
+		}
+		else if (rows[i].contains(&quot;FALSE&quot;)){
+			//println &apos;FAILED&apos;
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:red; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;FAIL&lt;/td&gt;&lt;/tr&gt;&quot;
+		}
+		else{
+			//println &apos;Not Executed&apos;
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:orange; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;Not Executed&lt;/td&gt;&lt;/tr&gt;&quot;
+			
+		}
+		}}
+
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details --&gt;&lt;table border=1px solid black border=0 width=100% cellpadding=4 cellspacing=1 style=border:1px solid;&gt;&lt;tr bgcolor=darkgreen&gt;&lt;th style=color:white&gt;Time Stamp&lt;/th&gt;&lt;th style=color:white&gt;Time Elapsed(miliSeconds)&lt;/th&gt;&lt;th style=color:white&gt;Sampler Name&lt;/th&gt;&lt;th style=color:white&gt;Response Code&lt;/th&gt;&lt;th style=color:white&gt;Response Message&lt;/th&gt;&lt;th style=color:white&gt;Success&lt;/th&gt;&lt;th style=color:white&gt;Failure Message&lt;/th&gt;&lt;th style=color:white&gt;URL&lt;/th&gt;&lt;/tr&gt;&quot;
+ 
+// read all the lines into a list, each line is an element in the list
+File fh2 = new File(FilePathCSV)
+def lines = fh2.readLines()
+//println(lines)
+for (int i=0;i&lt;=lines.size();i++) {
+	if((i&gt;0) &amp;&amp; (i&lt;lines.size()-1)){
+		//println(lines[i])
+		//log.info(lines[i])
+		String[] Lists;
+		Lists= lines[i].split(&apos;,&apos;)
+		//println(Lists)
+		//log.info(Lists)
+		for(int j=0;j&lt;=Lists.size();j++){
+			//println(Lists[j])
+			
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+Lists[0]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[1]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[2]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[3]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[4]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[7]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[8]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[13]+ &quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+			break
+			//println(&apos;hi&apos;)
+			//log.info(Lists[j])
+		}		
+	}		
+    // ...
+}
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+
+
+//Summary block
+
+reportFile &lt;&lt; &quot;&lt;h1&gt;&lt;/h1&gt;&lt;h2&gt;Summary of Report&lt;/h2&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details --&gt;&lt;table border=1px solid black border=0 width=100% cellpadding=4 cellspacing=1 style=border:1px solid;&gt;&lt;tr bgcolor=darkgreen&gt;&lt;th style=color:white&gt;Time Stamp&lt;/th&gt;&lt;th style=color:white&gt;Time Elapsed(miliSeconds)&lt;/th&gt;&lt;th style=color:white&gt;Sampler Name&lt;/th&gt;&lt;th style=color:white&gt;Response Code&lt;/th&gt;&lt;th style=color:white&gt;Response Message&lt;/th&gt;&lt;th style=color:white&gt;Success&lt;/th&gt;&lt;th style=color:white&gt;Failure Message&lt;/th&gt;&lt;th style=color:white&gt;URL&lt;/th&gt;&lt;/tr&gt;&quot;
+
+// read all the lines into a list, each line is an element in the list
+File fh23 = new File(FilePathCSV)
+def lines1 = fh23.readLines()
+//println(lines)
+for (int i=0;i&lt;=lines1.size();i++) {
+	if(i==lines1.size()-1){
+		//println(lines[i])
+		//log.info(lines[i])
+		String[] Lists;
+		Lists= lines1[i].split(&apos;,&apos;)
+		//println(Lists)
+		//log.info(Lists)
+		for(int j=0;j&lt;=Lists.size();j++){
+			//println(Lists[j])
+			
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+Lists[0]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[1]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[2]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[3]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[4]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[7]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[8]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[13]+ &quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+			break
+			//println(&apos;hi&apos;)
+			//log.info(Lists[j])
+		}		
+	}		
+    // ...
+}
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;
+
+
+
+
+ </stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+      </hashTree>
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp Thread Group" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </SetupThreadGroup>
+      <hashTree>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+println &apos;Pre---------Processor&apos;
+</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor_FirstAppend2" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+import org.apache.commons.lang3.SystemUtils;
+
+println &apos;1&apos;
+//println &apos;Pre---------Processor&apos;
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+//String osv = SystemUtils.OS_VERSION
+def CurrentTime = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss aaa&quot;).format(new Date())
+//println(TDNow)
+
+def os = SystemUtils.OS_NAME
+def UserName = SystemUtils.USER_NAME
+def ComputerName =SystemUtils.hostName
+def _threadGroupName = ctx.getThreadGroup().getName();
+//println(_threadGroupName)
+
+InetAddress myIP=InetAddress.getLocalHost();
+//println(&quot;My IP Address is:&quot;);
+//println(myIP.getHostAddress());
+def hostnameCanonical = myIP.getCanonicalHostName();
+//println(hostnameCanonical);
+
+
+File reportFile = new File(FilePathHTML)
+if(reportFile.exists()){
+	reportFile.delete()}
+if(!reportFile.exists()) {
+	reportFile.createNewFile()
+	reportFile &lt;&lt; &quot;&lt;html&gt;&lt;head&gt;&lt;style type=text/css&gt;&lt;/style&gt;&lt;/head&gt;&lt;table align=center border=0 cellpadding=4 cellspacing=0 style=border:0px solid width=100%&gt;&lt;tr&gt;&lt;td&gt;&lt;img src=C:\\Users\\Dileep\\Desktop\\HTMLReports\\Logo1PNG.png align=left style=width:90px;height:75px;/&gt;&lt;/td&gt;&lt;td&gt;&lt;h1&gt;&lt;font color=darkgreen face=Verdana&gt;&lt;a&gt;Matryxsoft Test Reports&lt;/a&gt;&lt;/font&gt;&lt;/h1&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details name --&gt;&lt;table border=1 width=40% cellpadding=4 cellspacing=1&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Thread Group Name&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$_threadGroupName&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Status&lt;/td&gt;&lt;td style=color:green; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;PASS&lt;/td&gt;&lt;!--td style=color:red; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;FAIL&lt;/td&gt;&lt;td style=color:orange; font-weight:bold;font-family:Verdana;font-size:14pt;&gt;Not Executed&lt;/td--&gt;&lt;/tr&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Host ID&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$hostnameCanonical&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Compuer&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$ComputerName&lt;/td&gt;&lt;/tr&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Windows&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$os&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Username&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$UserName&lt;/td&gt;&lt;/tr&gt;&lt;tr bgcolor=b3ccff&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Execution started&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$CurrentTime&lt;/td&gt;&lt;/tr&gt;&quot;
+</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+      </hashTree>
+      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown Thread Group" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </PostThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler2_Ap2" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+println &apos;3&apos;
+String FilePathCSV= &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.csv&apos;
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+
+// read all the content of the file into a single string
+//File fh1 = new File(FilePathCSV)
+//text = fh1.getText(&apos;UTF-8&apos;)
+//println(text)
+ 
+// read all the lines into a list, each line is an element in the list
+File fh2 = new File(FilePathCSV)
+def lines = fh2.readLines()
+//println(lines)
+for (int i=0;i&lt;=lines.size();i++) {
+	if(i&gt;0){
+		//println(lines[i])
+		//log.info(lines[i])
+		String[] Lists;
+		Lists= lines[i].split(&apos;,&apos;)
+		//println(Lists)
+		//log.info(Lists)
+		for(int j=0;j&lt;=Lists.size();j++){
+			//println(Lists[j])
+			File reportFile = new File(FilePathHTML)
+			reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td&gt;&quot;+Lists[0]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[1]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[2]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[3]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[4]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[5]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[6]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[7]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[8]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[9]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[10]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[11]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[12]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[13]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[14]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[15]+ &quot;&lt;/td&gt;&lt;td&gt;&quot;+Lists[16]+ &quot;&lt;/td&gt;&lt;/tr&gt;&quot;
+			break
+			//println(&apos;hi&apos;)
+			//log.info(Lists[j])
+		}
+		
+		
+	}		
+    // ...
+}
+
+
+ </stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor_LastAppend2" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+println &apos;4&apos;
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+
+File reportFile = new File(FilePathHTML)
+reportFile &lt;&lt; &quot;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;&quot;</stringProp>
+        </JSR223PostProcessor>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor_Ap2" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+import java.text.SimpleDateFormat
+import java.util.logging.Level
+
+println(&apos;2&apos;)
+
+def CurrentTime = new SimpleDateFormat(&quot;yyyy/MM/dd hh:mm:ss aaa&quot;).format(new Date())
+//println(TDNow)
+//println &apos;Post processor &apos;
+String FilePathHTML = &apos;C:\\Users\\Dileep\\Desktop\\HTMLReports\\output.html&apos;
+
+File reportFile = new File(FilePathHTML)
+reportFile &lt;&lt; &quot;&lt;tr&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt&gt;Execution Finished&lt;/td&gt;&lt;td style=color:black; font-family:Verdana;font-size:14pt;&gt;$CurrentTime&lt;/td&gt;&lt;/tr&lt;/table&gt;&lt;h1&gt;&lt;/h1&gt;&lt;!-- Display test case details --&gt;&lt;table border=1px solid black border=0 width=100% cellpadding=4 cellspacing=1 style=border:1px solid;&gt;&lt;tr bgcolor=darkgreen&gt;&lt;th style=color:white&gt;Time Stamp&lt;/th&gt;&lt;th style=color:white&gt;Elapsed&lt;/th&gt;&lt;th style=color:white&gt;Sampler Name&lt;/th&gt;&lt;th style=color:white&gt;Response Code&lt;/th&gt;&lt;th style=color:white&gt;Response Message&lt;/th&gt;&lt;th style=color:white&gt;Thread Name&lt;/th&gt;&lt;th style=color:white&gt;Data Type&lt;/th&gt;&lt;th style=color:white&gt;Success&lt;/th&gt;&lt;th style=color:white&gt;Failure Message&lt;/th&gt;&lt;th style=color:white&gt;Bytes&lt;/th&gt;&lt;th style=color:white&gt;Sent Bytes&lt;/th&gt;&lt;th style=color:white&gt;grp Threads&lt;/th&gt;&lt;th style=color:white&gt;All Threads&lt;/th&gt;&lt;th style=color:white&gt;URL&lt;/th&gt;&lt;th style=color:white&gt;Latency&lt;/th&gt;&lt;th style=color:white&gt;Idle Time&lt;/th&gt;&lt;th style=color:white&gt;Connect&lt;/th&gt;&lt;/tr&gt;&quot;
+
+</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+      </hashTree>
+      <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="false">
+        <stringProp name="cacheKey">true</stringProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="parameters"></stringProp>
+        <stringProp name="script">println &apos;Main and Last listener&apos;
+
+</stringProp>
+        <stringProp name="scriptLanguage">groovy</stringProp>
+      </JSR223Listener>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="try" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="SysInfo" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import org.apache.commons.lang3.SystemUtils;
+
+
+String os = SystemUtils.OS_NAME
+String UserName = SystemUtils.USER_NAME
+String osv = SystemUtils.OS_VERSION
+String n = SystemUtils.hostName
+println n
+println os
+println UserName
+println osv
+
+InetAddress myIP=InetAddress.getLocalHost();
+println(&quot;My IP Address is:&quot;);
+println(myIP.getHostAddress());
+String hostnameCanonical = myIP.getCanonicalHostName();
+println(hostnameCanonical);
+</stringProp>
+        </JSR223Sampler>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler_CSVtoEXCEL" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.*;
+
+String csvFile=&quot;C:\\Users\\Dileep\\Desktop\\HTMLReports\\outputException.csv&quot;
+
+BufferedReader br = new BufferedReader(new FileReader(csvFile));
+while ((line = br.readLine()) != null) {
+    // use comma as separator
+    String[] cols = line.split(&quot;|&quot;);
+    println(&quot;Coulmn 4= &quot; + cols[4] + &quot; , Column 5=&quot; + cols[5]);
+    log.info(&quot;Coulmn 4= &quot; + cols[4] + &quot; , Column 5=&quot; + cols[5]);
+}</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="false">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>false</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>false</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>false</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+          </value>
+        </objProp>
+        <stringProp name="filename">E:\VidyaWorkspace\JMeterWorkspace\Reports\Report_DataWriter.jtl</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

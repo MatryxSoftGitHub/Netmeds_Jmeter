@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="false">
+        <stringProp name="scriptLanguage">groovy</stringProp>
+        <stringProp name="parameters"></stringProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="cacheKey">true</stringProp>
+        <stringProp name="script">import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.reporter.*;
+import com.aventstack.extentreports.markuputils.*;
+
+ExtentHtmlReporter htmlReporter;
+ExtentReports extent;
+ExtentTest test;
+
+// create the HtmlReporter
+htmlReporter = new ExtentHtmlReporter(&quot;D:/Results_${testApp}_${reportDate}_${currentTime}_${testenv}.html&quot;);
+
+//configure report
+htmlReporter.config().setCreateOfflineReport(true);
+htmlReporter.config().setChartVisibilityOnOpen(true);
+htmlReporter.config().setDocumentTitle(&quot;${testApp} Results&quot;);
+htmlReporter.config().setEncoding(&quot;utf-8&quot;);
+htmlReporter.config().setReportName(&quot;${testApp} Results ${reportDate}_${currentTime}_${testenv}&quot;);
+
+htmlReporter.setAppendExisting(true);
+// create ExtentReports
+extent = new ExtentReports();
+
+// attach reporter to ExtentReports
+extent.attachReporter(htmlReporter);
+extent.setReportUsesManualConfiguration(true); 
+
+// Show Env section and set data on dashboard
+extent.setSystemInfo(&quot;Tool&quot;,&quot;JMeter&quot;);
+extent.setSystemInfo(&quot;Test Env&quot;,&quot;${testenv}&quot;);
+extent.setSystemInfo(&quot;Test Date&quot;,&quot;${reportDate}&quot;);
+extent.setSystemInfo(&quot;Test Time&quot;,&quot;${currentTime}&quot;);
+
+//stringify test info
+String threadName = sampler.getThreadName();
+String samplerName = sampler.getName();
+String requestData = props.get(&quot;propRequestData&quot;);
+String respCode = props.get(&quot;propRespCode&quot;);
+String respMessage = props.get(&quot;propRespMessage&quot;);
+String responseData = props.get(&quot;propResponse&quot;);
+
+
+// create test
+test = extent.createTest(threadName+&quot; - &quot;+samplerName);
+//test.assignCategory(&quot;API Testing&quot;);
+
+// analyze sampler result
+if (vars.get(&quot;JMeterThread.last_sample_ok&quot;) == &quot;false&quot;) {
+   log.error(&quot;FAILED: &quot;+samplerName);
+   print(&quot;FAILED: &quot;+samplerName);
+   test.fail(MarkupHelper.createLabel(&quot;FAILED:  &quot;+sampler.getName(),ExtentColor.RED));
+
+} else if (vars.get(&quot;JMeterThread.last_sample_ok&quot;) == &quot;true&quot;) {
+    if(responseData.contains(&quot;@error&quot;)) {
+        log.info(&quot;FAILED: &quot;+sampler.getName());
+         print(&quot;FAILED: &quot;+sampler.getName());
+        test.fail(MarkupHelper.createLabel(&quot;FAILED:   &quot;+sampler.getName(),ExtentColor.RED));
+
+    } else if (responseData.contains(&quot;{&quot;)) {
+            log.info(&quot;Passed: &quot;+sampler.getName());
+        print(&quot;Passed: &quot;+sampler.getName());
+            test.pass(MarkupHelper.createLabel(&quot;Passed:   &quot;+sampler.getName(),ExtentColor.GREEN));
+    }
+
+} else {
+    log.error(&quot;Something is really wonky&quot;);
+    print(&quot;Something is really wonky&quot;);
+    test.fatal(&quot;Something is really wonky&quot;);
+}
+
+//info messages
+    test.info(&quot;RequestData:   &quot;+requestData);
+    test.info(&quot;Response Code and Message:    &quot;+respCode+&quot;   &quot;+respMessage);
+    test.info(&quot;ResponseData:    &quot;+responseData);
+
+
+
+//playing around
+//markupify json into code blocks
+//Markup m = MarkupHelper.createCodeBlock(requestData);
+//test.info(MarkupHelper.createModal(&quot;Modal text&quot;));
+//Markup mCard = MarkupHelper.createCard(requestData, ExtentColor.CYAN);
+//   test.info(&quot;Request  &quot;+m);
+//  test.info(mCard);
+//     test.info(&quot;Response Data:     &quot;+MarkupHelper.createCodeBlock(props.get(&quot;propResponse&quot;)));
+//   test.info(&quot;ASSERTION MESSAGE:     &quot;+props.get(&quot;propAssertion&quot;));
+
+
+// end the reporting and save the file
+extent.flush();</stringProp>
+      </JSR223Listener>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="CustomReport" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">log.info(&quot;--------------Initialize&quot;);
+import java.time.Duration;
+import java.time.Instant;
+
+Instant myStart = Instant.now();
+props.put(&quot;varmyStart&quot;,myStart);
+log.info(&quot;Test Start time: ----  &quot;+props.get(&quot;varmyStart&quot;));
+
+//response
+props.put(&quot;propResponse&quot;,&quot;Test Start time { &quot;+props.get(&quot;varmyStart&quot;)+&quot; }&quot;);
+SampleResult.setResponseData(props.get(&quot;propResponse&quot;));</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">log.info(&quot;---------------End Test JSR223Sampler&quot;);
+//props.put(&quot;varEndTest&quot;,&quot;Yes&quot;); 
+import java.time.Duration;
+import java.time.Instant;
+Instant myEnd = Instant.now();
+props.put(&quot;varmyEnd&quot;,myEnd);
+log.info(&quot;varmyEnd----  &quot;+props.get(&quot;varmyEnd&quot;));
+Duration timeElapsed = Duration.between(props.get(&quot;varmyStart&quot;), 
+props.get(&quot;varmyEnd&quot;));
+//millis
+props.put(&quot;varTimeTakenMS&quot;,timeElapsed.toMillis().toString());
+log.info(&quot;prop varTimeTaken(MS): --&quot;+props.get(&quot;varTimeTakenMS&quot;));
+//seconds
+props.put(&quot;varTimeTakenSEC&quot;,timeElapsed.getSeconds());
+log.info(&quot;prop varTimeTaken(SEC): --&quot;+props.get(&quot;varTimeTakenSEC&quot;));
+//minutes
+props.put(&quot;varTimeTakenMINS&quot;,timeElapsed.toMinutes().toString());
+log.info(&quot;prop varTimeTaken(MINS): --&quot;+props.get(&quot;varTimeTakenMINS&quot;));
+//response
+props.put(&quot;propResponse&quot;,&quot;Test End time { &quot;+props.get(&quot;varmyEnd&quot;)+&quot; }.  Test Duration: &quot;+props.get(&quot;varTimeTakenMINS&quot;)+&quot; Minutes&quot;);
+SampleResult.setResponseData(props.get(&quot;propResponse&quot;));</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.reporter.*;
+import com.aventstack.extentreports.markuputils.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import groovy.xml.*
+
+ExtentHtmlReporter htmlReporter;
+ExtentReports extent;
+ExtentTest test;
+
+// create the HtmlReporter
+htmlReporter = new ExtentHtmlReporter(&quot;D://Results.html&quot;);
+
+//configure report
+htmlReporter.config().setCreateOfflineReport(true);
+htmlReporter.config().setChartVisibilityOnOpen(true);
+htmlReporter.config().setDocumentTitle(&quot;${testApp} Results&quot;);
+htmlReporter.config().setEncoding(&quot;utf-8&quot;);
+htmlReporter.config().setReportName(&quot;${testApp} Results ${reportDate}_${currentTime}_${testenv}&quot;);
+htmlReporter.setAppendExisting(true);
+
+// create ExtentReports
+extent = new ExtentReports();
+
+// attach reporter to ExtentReports
+extent.attachReporter(htmlReporter);
+extent.setReportUsesManualConfiguration(true); 
+
+// Show Env section and set data on dashboard
+extent.setSystemInfo(&quot;Tool&quot;,&quot;JMeter&quot;);
+extent.setSystemInfo(&quot;Test Env&quot;,&quot;${testenv}&quot;);
+extent.setSystemInfo(&quot;Test Date&quot;,&quot;${reportDate}&quot;);
+extent.setSystemInfo(&quot;Test Time&quot;,&quot;${currentTime}&quot;);
+
+//stringify test info
+String threadName = sampler.getThreadName();
+String samplerName = sampler.getName();
+String requestData = props.get(&quot;propRequestData&quot;);
+String respCode = props.get(&quot;propRespCode&quot;);
+String respMessage = props.get(&quot;propRespMessage&quot;);
+String responseData = props.get(&quot;propResponse&quot;);
+
+
+// create test
+test = extent.createTest(threadName+&quot; - &quot;+samplerName);
+//test.assignCategory(&quot;API Testing&quot;);
+
+// analyze sampler result
+if (vars.get(&quot;JMeterThread.last_sample_ok&quot;) == &quot;false&quot;) {
+   log.error(&quot;FAILED: &quot;+samplerName);
+   print(&quot;FAILED: &quot;+samplerName);
+   test.fail(MarkupHelper.createLabel(&quot;FAILED:  &quot;+sampler.getName(),ExtentColor.RED));
+
+} else if (vars.get(&quot;JMeterThread.last_sample_ok&quot;) == &quot;true&quot;) {
+    if(responseData.contains(&quot;@error&quot;)) {
+        log.info(&quot;FAILED: &quot;+sampler.getName());
+         print(&quot;FAILED: &quot;+sampler.getName());
+        test.fail(MarkupHelper.createLabel(&quot;FAILED:   &quot;+sampler.getName(),ExtentColor.RED));
+
+    } else if (responseData.contains(&quot;{&quot;)) {
+            log.info(&quot;Passed: &quot;+sampler.getName());
+        print(&quot;Passed: &quot;+sampler.getName());
+            test.pass(MarkupHelper.createLabel(&quot;Passed:   &quot;+sampler.getName(),ExtentColor.GREEN));
+    }
+
+} else {
+    log.error(&quot;Something is really wonky&quot;);
+    print(&quot;Something is really wonky&quot;);
+    test.fatal(&quot;Something is really wonky&quot;);
+}
+
+//info messages
+    test.info(&quot;RequestData:   &quot;+requestData);
+    test.info(&quot;Response Code and Message:    &quot;+respCode+&quot;   &quot;+respMessage);
+    test.info(&quot;ResponseData:    &quot;+responseData);
+
+
+
+//playing around
+//markupify json into code blocks
+//Markup m = MarkupHelper.createCodeBlock(requestData);
+//test.info(MarkupHelper.createModal(&quot;Modal text&quot;));
+//Markup mCard = MarkupHelper.createCard(requestData, ExtentColor.CYAN);
+//   test.info(&quot;Request  &quot;+m);
+//  test.info(mCard);
+//     test.info(&quot;Response Data:     &quot;+MarkupHelper.createCodeBlock(props.get(&quot;propResponse&quot;)));
+//   test.info(&quot;ASSERTION MESSAGE:     &quot;+props.get(&quot;propAssertion&quot;));
+
+
+// end the reporting and save the file
+extent.flush();</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="false">
+          <stringProp name="BeanShellAssertion.query">//request data
+String requestData = new String(prev.SamplerData);
+//String requestData = new String(requestData);
+props.put(&quot;propRequestData&quot;, requestData);
+//response data
+String respData = new String(prev.ResponseData);
+//String respData = new String(prev.getResponseDataAsString());
+props.put(&quot;propResponse&quot;, respData);
+//response code
+String respCode = new String(prev.ResponseCode);
+props.put(&quot;propRespCode&quot;,respCode);
+//response message
+String respMessage = new String(prev.ResponseMessage);
+props.put(&quot;propRespMessage&quot;,respMessage);</stringProp>
+          <stringProp name="BeanShellAssertion.filename"></stringProp>
+          <stringProp name="BeanShellAssertion.parameters"></stringProp>
+          <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+        </BeanShellAssertion>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="false">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">// path where output is to be printed
+ExtentHtmlReporter html = new ExtentHtmlReporter(&quot;D://Extent.html&quot;);
+ExtentReporter extent = new ExtentReports();
+extent.attachReporter(html);
+</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
+ExtentReports report;
+ExtentTest testLogger;
+
+String resultsPath = &quot;C:/portalQA/Automation/Results&quot;;
+String configPath = &quot;C:/jmeter/apache-jmeter-3.2/lib&quot;;
+String reportPath;
+
+reportPath = resultsPath+&quot;/test2/testing_extRpts_${myTimeinMills}.html&quot;;
+
+report = new ExtentReports(reportPath, true);
+report.loadConfig( new File(configPath+&quot;extent-config.xml&quot;));
+
+testLogger = report.startTest(&quot;Entire Script&quot;);
+testLogger.log(LogStatus.INFO, &quot;This is the API test script for Login&quot;);
+
+report.flush();
+//Thread.sleep(2000);
+//report.close();</stringProp>
+        </JSR223PreProcessor>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
